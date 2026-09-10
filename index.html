@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Royal Blackjack - Training Mode</title>
+    <title>Royal Blackjack - Advanced Training</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,150 +34,83 @@
         }
 
         .bg-container {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
+            position: fixed; inset: 0; width: 100vw; height: 100vh;
             background: radial-gradient(circle at 85% 15%, #182a54 0%, #090e18 55%, #020408 100%);
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
+            overflow: hidden; z-index: 0; pointer-events: none;
         }
-        .wave {
-            position: absolute;
-            width: 180%;
-            height: 180%;
-            border-radius: 50%;
-            background: radial-gradient(ellipse at 50% 20%, #1e3768 0%, #0d1930 50%, #040810 85%);
-        }
+        .wave { position: absolute; width: 180%; height: 180%; border-radius: 50%; background: radial-gradient(ellipse at 50% 20%, #1e3768 0%, #0d1930 50%, #040810 85%); }
         .wave-1 { bottom: -95%; left: -65%; transform: rotate(-26deg); border-top: 2.5px solid #d4af37; box-shadow: 0 -3px 12px rgba(212,175,55,0.4), 0 -20px 40px rgba(0,0,0,0.9); }
         .wave-2 { bottom: -72%; left: -48%; transform: rotate(-26deg); border-top: 2.5px solid #f3cf7a; box-shadow: 0 -3px 15px rgba(243,207,122,0.6), 0 -25px 50px rgba(0,0,0,0.95); }
         .wave-3 { bottom: -50%; left: -32%; transform: rotate(-26deg); border-top: 3px solid #ffe89c; box-shadow: 0 -4px 20px rgba(255,232,156,0.8), 0 -30px 60px rgba(0,0,0,1); }
 
-        .game-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-            padding: 6px;
-            gap: 6px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
+        .game-wrapper { flex: 1; display: flex; flex-direction: column; min-height: 0; padding: 6px; gap: 6px; position: relative; z-index: 1; overflow: hidden; }
 
         .game-header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px;
             background: rgba(4, 8, 16, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 6px 12px;
-            flex-shrink: 0;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--gold); border-radius: var(--radius);
+            padding: 6px 12px; flex-shrink: 0;
             box-shadow: 0 6px 18px rgba(0,0,0,0.7), inset 0 0 20px rgba(30, 55, 104, 0.3);
         }
         .game-title {
-            font-size: clamp(14px, 2.8vw, 20px);
-            font-weight: 800;
+            font-size: clamp(14px, 2.8vw, 20px); font-weight: 800;
             background: linear-gradient(135deg, #f3e0aa, #c59b27, #ffe89c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             white-space: nowrap;
         }
         .account-row { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; justify-content: center; }
         .info-box {
-            background: rgba(30, 55, 104, 0.35);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(197,155,39,0.6);
-            border-radius: var(--radius-sm);
-            padding: 4px 10px;
-            text-align: center;
-            min-width: 65px;
+            background: rgba(30, 55, 104, 0.35); backdrop-filter: blur(6px);
+            border: 1px solid rgba(197,155,39,0.6); border-radius: var(--radius-sm);
+            padding: 4px 10px; text-align: center; min-width: 65px;
         }
         .info-label { font-size: 0.55rem; color: var(--gold-light); font-weight: 600; text-transform: uppercase; }
         .info-value { font-size: 0.85rem; font-weight: 800; color: #fff; }
 
         .training-toggle {
-            background: rgba(30, 55, 104, 0.5);
-            border: 1px solid var(--gold);
-            border-radius: 6px;
-            color: var(--gold-light);
-            padding: 4px 10px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
+            background: rgba(30, 55, 104, 0.5); border: 1px solid var(--gold);
+            border-radius: 6px; color: var(--gold-light); padding: 4px 10px;
+            font-size: 0.65rem; font-weight: 700; cursor: pointer;
+            transition: var(--transition); white-space: nowrap;
         }
         .training-toggle:hover { background: rgba(197,155,39,0.3); }
-        .training-toggle.active {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: white;
-            border-color: #4ade80;
-        }
+        .training-toggle.active { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border-color: #4ade80; }
+        .training-toggle.pure { background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-color: #a78bfa; color: white; }
 
         .game-table {
-            flex: 1;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            flex: 1; min-height: 0;
+            display: flex; flex-direction: column; justify-content: space-between;
             background: radial-gradient(ellipse at center, rgba(13, 25, 48, 0.85) 0%, rgba(4, 8, 16, 0.95) 100%);
-            border: 3px solid var(--gold);
-            border-radius: 20px;
-            padding: 8px 6px;
+            border: 3px solid var(--gold); border-radius: 20px; padding: 8px 6px;
             box-shadow: 0 16px 32px rgba(0,0,0,0.8), inset 0 0 50px rgba(30, 55, 104, 0.4);
             overflow: hidden;
         }
         .dealer-area, .player-area { display: flex; flex-direction: column; align-items: center; width: 100%; }
         .dealer-header, .player-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 480px;
-            padding: 0 8px;
-            margin-bottom: 2px;
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%; max-width: 480px; padding: 0 8px; margin-bottom: 2px;
         }
         .section-label { font-size: 0.85rem; font-weight: 700; color: var(--gold-light); }
         .score-box {
             background: linear-gradient(145deg, #0d1930, #040810);
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            padding: 2px 10px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: var(--gold-light);
-            min-width: 50px;
-            text-align: center;
-            margin-top: 4px;
-            display: inline-block;
+            border: 2px solid var(--gold); border-radius: 8px;
+            padding: 2px 10px; font-size: 0.8rem; font-weight: 800;
+            color: var(--gold-light); min-width: 50px; text-align: center;
+            margin-top: 4px; display: inline-block;
         }
         .cards-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin: 4px 0;
-            perspective: 1200px;
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 6px; margin: 4px 0; perspective: 1200px;
         }
 
         .card {
-            position: relative;
-            background: #fff;
+            position: relative; background: #fff;
             border-radius: clamp(6px, 1vw, 10px);
             border: 1px solid rgba(0, 0, 0, 0.05);
             box-shadow: -3px 6px 14px rgba(0, 0, 0, 0.3), -1px 2px 5px rgba(0, 0, 0, 0.15);
-            width: clamp(52px, 8vw, 72px);
-            height: clamp(78px, 12vw, 104px);
-            flex-shrink: 0;
-            color: var(--card-black);
+            width: clamp(52px, 8vw, 72px); height: clamp(78px, 12vw, 104px);
+            flex-shrink: 0; color: var(--card-black);
             animation: dealCard 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
             overflow: hidden;
         }
@@ -203,215 +136,152 @@
         .face-decor.top-right { top: 8px; right: 8px; }
         .face-decor.bottom-left-inner { bottom: 8px; left: 8px; }
 
-        .card.card-back {
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-        }
-        .card.card-back::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            background: linear-gradient(145deg, #0f1e3d 0%, #050a18 100%);
-            border: 1.5px solid var(--gold);
-            border-radius: 6px;
-        }
-        .card.card-back::after {
-            content: '';
-            position: absolute;
-            inset: 9px;
-            border: 1px solid rgba(197, 155, 39, 0.5);
-            border-radius: 4px;
-        }
-        .card.card-back .back-emblem {
-            position: relative;
-            z-index: 1;
-            width: 40%;
-            height: 40%;
-            color: var(--gold-light);
-        }
-        .card.card-back .back-emblem svg {
-            width: 100%;
-            height: 100%;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
+        .card.card-back { background: #fff; border: 1px solid rgba(0, 0, 0, 0.05); display: flex; align-items: center; justify-content: center; padding: 4px; }
+        .card.card-back::before { content: ''; position: absolute; inset: 4px; background: linear-gradient(145deg, #0f1e3d 0%, #050a18 100%); border: 1.5px solid var(--gold); border-radius: 6px; }
+        .card.card-back::after { content: ''; position: absolute; inset: 9px; border: 1px solid rgba(197, 155, 39, 0.5); border-radius: 4px; }
+        .card.card-back .back-emblem { position: relative; z-index: 1; width: 40%; height: 40%; color: var(--gold-light); }
+        .card.card-back .back-emblem svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; }
 
-        .active-hand {
-            outline: 2px solid #fbbf24;
-            outline-offset: 2px;
-            border-radius: 10px;
-            animation: activeGlow 1.2s ease-in-out infinite alternate;
-        }
+        .active-hand { outline: 2px solid #fbbf24; outline-offset: 2px; border-radius: 10px; animation: activeGlow 1.2s ease-in-out infinite alternate; }
         @keyframes activeGlow {
             from { box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.5); }
             to { box-shadow: 0 0 18px 5px rgba(255, 215, 0, 0.9); }
         }
-        .blackjack-highlight .card {
-            box-shadow: 0 0 16px 4px rgba(34, 197, 94, 0.9);
-            border: 2px solid #22c55e;
-        }
+        .blackjack-highlight .card { box-shadow: 0 0 16px 4px rgba(34, 197, 94, 0.9); border: 2px solid #22c55e; }
         .hand-label { font-size: 0.65rem; color: var(--gold-light); font-weight: 700; margin-top: 2px; }
 
         .status-banner {
-            background: rgba(4, 8, 16, 0.85);
-            border: 1.5px solid var(--gold);
-            border-radius: 10px;
-            padding: 6px 16px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--gold-light);
-            text-align: center;
-            margin: 4px auto;
-            max-width: 95%;
-            width: fit-content;
+            background: rgba(4, 8, 16, 0.85); border: 1.5px solid var(--gold);
+            border-radius: 10px; padding: 6px 16px; font-size: 0.85rem; font-weight: 700;
+            color: var(--gold-light); text-align: center; margin: 4px auto;
+            max-width: 95%; width: fit-content;
         }
         .status-banner.win { background: rgba(0,60,30,0.85); color: #4ade80; border-color: #22c55e; }
         .status-banner.loss { background: rgba(60,0,0,0.85); color: #f87171; border-color: #ef4444; }
 
         .game-footer {
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            flex-shrink: 0; display: flex; flex-direction: column; gap: 6px;
             background: rgba(4, 8, 16, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--gold);
-            border-radius: var(--radius);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--gold); border-radius: var(--radius);
             padding: 6px 8px;
         }
         .action-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
         .game-button {
             background: linear-gradient(135deg, #0d1930, #040810);
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            color: var(--gold-light);
-            font-weight: 700;
-            padding: 7px 12px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            white-space: nowrap;
-            flex: 1 1 auto;
-            min-width: 55px;
-            text-align: center;
+            border: 2px solid var(--gold); border-radius: 8px;
+            color: var(--gold-light); font-weight: 700;
+            padding: 7px 12px; font-size: 0.7rem; cursor: pointer;
+            white-space: nowrap; flex: 1 1 auto; min-width: 55px; text-align: center;
+            transition: var(--transition);
         }
-        .game-button:hover:not(:disabled) {
-            background: linear-gradient(135deg, #c59b27, #8b6914);
-            color: #fff;
-            transform: translateY(-2px);
-        }
+        .game-button:hover:not(:disabled) { background: linear-gradient(135deg, #c59b27, #8b6914); color: #fff; transform: translateY(-2px); }
         .game-button:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(0.7); }
         .game-button.primary { background: linear-gradient(135deg, #c59b27, #a17c1a); color: #1f2937; font-weight: 800; }
+        .game-button.feedback-correct { background: linear-gradient(135deg, #22c55e, #16a34a) !important; color: white !important; border-color: #4ade80 !important; box-shadow: 0 0 15px rgba(34,197,94,0.7); }
+        .game-button.feedback-wrong { background: linear-gradient(135deg, #ef4444, #b91c1c) !important; color: white !important; border-color: #f87171 !important; box-shadow: 0 0 15px rgba(239,68,68,0.7); }
+
         .secondary-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; }
         .btn-small {
-            background: rgba(30, 55, 104, 0.35);
-            border: 1px solid var(--gold);
-            border-radius: 6px;
-            color: var(--gold-light);
-            padding: 4px 10px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            cursor: pointer;
+            background: rgba(30, 55, 104, 0.35); border: 1px solid var(--gold);
+            border-radius: 6px; color: var(--gold-light); padding: 4px 10px;
+            font-size: 0.6rem; font-weight: 600; cursor: pointer;
+            transition: var(--transition);
         }
         .btn-small:hover { background: rgba(197,155,39,0.2); }
         .btn-small:disabled { opacity: 0.4; cursor: not-allowed; }
         .manual-bet-input {
-            background: rgba(4, 8, 16, 0.6);
-            border: 1px solid var(--gold);
-            border-radius: 6px;
-            color: #fff;
-            padding: 4px 8px;
-            font-size: 0.65rem;
-            width: 85px;
-            text-align: center;
+            background: rgba(4, 8, 16, 0.6); border: 1px solid var(--gold);
+            border-radius: 6px; color: #fff; padding: 4px 8px;
+            font-size: 0.65rem; width: 85px; text-align: center;
         }
 
-        /* ==================== HUD تمرینی ==================== */
+        /* ==================== Training HUD ==================== */
         .training-hud {
-            position: fixed;
-            top: 60px;
-            left: 10px;
-            background: rgba(4, 8, 16, 0.92);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid #22c55e;
-            border-radius: 10px;
-            padding: 6px 10px;
-            font-size: 0.65rem;
-            color: #4ade80;
-            z-index: 100;
-            display: none;
-            flex-direction: column;
-            gap: 3px;
-            min-width: 180px;
-            font-family: 'Oswald', sans-serif;
+            position: fixed; top: 60px; left: 10px;
+            background: rgba(4, 8, 16, 0.92); backdrop-filter: blur(10px);
+            border: 1.5px solid #22c55e; border-radius: 10px;
+            padding: 6px 10px; font-size: 0.65rem; color: #4ade80;
+            z-index: 100; display: none; flex-direction: column; gap: 3px;
+            min-width: 200px; font-family: 'Oswald', sans-serif;
             box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
-            cursor: move;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: none;
-            transition: box-shadow 0.2s, opacity 0.2s;
+            cursor: move; user-select: none; touch-action: none;
         }
         .training-hud.show { display: flex; }
-        .training-hud.dragging {
-            opacity: 0.95;
-            box-shadow: 0 8px 28px rgba(34, 197, 94, 0.7);
-            cursor: grabbing;
-        }
+        .training-hud.dragging { opacity: 0.95; box-shadow: 0 8px 28px rgba(34, 197, 94, 0.7); cursor: grabbing; }
         .training-hud::after {
-            content: '⠿';
-            position: absolute;
-            top: 2px;
-            left: 6px;
-            color: #22c55e;
-            font-size: 0.85rem;
-            opacity: 0.5;
-            pointer-events: none;
-            font-weight: bold;
+            content: '⠿'; position: absolute; top: 2px; left: 6px;
+            color: #22c55e; font-size: 0.85rem; opacity: 0.5;
+            pointer-events: none; font-weight: bold;
         }
         .training-hud .hud-title {
-            color: #22c55e;
-            font-weight: 700;
-            font-size: 0.7rem;
+            color: #22c55e; font-weight: 700; font-size: 0.7rem;
             border-bottom: 1px solid rgba(34,197,94,0.4);
-            padding-bottom: 3px;
-            margin-bottom: 3px;
-            padding-left: 16px;
-            display: flex;
-            justify-content: space-between;
+            padding-bottom: 3px; margin-bottom: 3px; padding-left: 16px;
+            display: flex; justify-content: space-between;
         }
         .training-hud .hud-row { display: flex; justify-content: space-between; }
         .training-hud .hud-row span:first-child { color: #94a3b8; }
         .training-hud .hud-row .value { color: #4ade80; font-weight: 700; }
         .training-hud .hud-row .value.warn { color: #fbbf24; }
         .training-hud .hud-row .value.bad { color: #f87171; }
+        .hud-drill-select {
+            background: rgba(0,0,0,0.5); border: 1px solid #22c55e;
+            color: #4ade80; border-radius: 4px; padding: 2px 4px;
+            font-size: 0.6rem; width: 100%; margin-top: 2px;
+        }
 
-        /* ==================== مودال گزارش ==================== */
+        /* ==================== Feedback Toast ==================== */
+        .feedback-toast {
+            position: fixed; top: 70px; left: 50%; transform: translateX(-50%) translateY(-30px);
+            background: rgba(4, 8, 16, 0.97); backdrop-filter: blur(12px);
+            border-radius: 12px; padding: 10px 16px;
+            z-index: 500; opacity: 0; pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+            min-width: 250px; max-width: 90vw;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+            font-family: 'Oswald', sans-serif;
+        }
+        .feedback-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+        .feedback-toast.correct {
+            border: 2px solid #22c55e;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.5);
+        }
+        .feedback-toast.wrong {
+            border: 2px solid #ef4444;
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.5);
+        }
+        .feedback-toast .fb-title {
+            font-size: 0.9rem; font-weight: 800;
+            margin-bottom: 4px; display: flex; align-items: center; gap: 6px;
+        }
+        .feedback-toast.correct .fb-title { color: #4ade80; }
+        .feedback-toast.wrong .fb-title { color: #f87171; }
+        .feedback-toast .fb-body {
+            font-size: 0.75rem; color: #cbd5e1; line-height: 1.5;
+        }
+        .feedback-toast .fb-body b { color: #f3e0aa; }
+        .feedback-toast .fb-why-btn {
+            margin-top: 6px; background: rgba(197, 155, 39, 0.2);
+            border: 1px solid var(--gold); border-radius: 6px;
+            color: var(--gold-light); padding: 4px 10px;
+            font-size: 0.68rem; font-weight: 700; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .feedback-toast .fb-why-btn:hover { background: rgba(197, 155, 39, 0.4); }
+
+        /* ==================== Report Modal ==================== */
         .report-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 10000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            backdrop-filter: blur(6px);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            z-index: 10000; display: none; align-items: center; justify-content: center;
+            padding: 10px; backdrop-filter: blur(6px);
         }
         .report-modal.show { display: flex; }
         .report-content {
             background: linear-gradient(145deg, #0d1930, #040810);
-            border: 2px solid var(--gold);
-            border-radius: 16px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 92vh;
-            overflow-y: auto;
-            padding: 16px;
+            border: 2px solid var(--gold); border-radius: 16px;
+            max-width: 640px; width: 100%; max-height: 92vh;
+            overflow-y: auto; padding: 16px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(30, 55, 104, 0.3);
             font-family: 'Tahoma', 'Oswald', sans-serif;
         }
@@ -420,102 +290,67 @@
         .report-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
 
         .report-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 10px;
-            margin-bottom: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 12px;
         }
         .report-title {
-            font-size: 1.2rem;
-            font-weight: 800;
+            font-size: 1.2rem; font-weight: 800;
             background: linear-gradient(135deg, #f3e0aa, #c59b27);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .report-close {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid #ef4444;
-            color: #f87171;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444;
+            color: #f87171; width: 30px; height: 30px;
+            border-radius: 50%; cursor: pointer; font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
         }
-        .report-close:hover { background: rgba(239, 68, 68, 0.4); }
-
         .report-section {
             background: rgba(30, 55, 104, 0.25);
             border: 1px solid rgba(197,155,39,0.3);
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 10px;
+            border-radius: 10px; padding: 10px 12px; margin-bottom: 10px;
         }
         .report-section-title {
-            color: var(--gold-light);
-            font-weight: 800;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--gold-light); font-weight: 800; font-size: 0.85rem;
+            margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
         }
-        .report-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            font-size: 0.75rem;
-        }
-        .report-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 3px 0;
-            border-bottom: 1px dashed rgba(255,255,255,0.08);
-        }
+        .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.75rem; }
+        .report-item { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
         .report-item .label { color: #94a3b8; }
         .report-item .value { color: #fff; font-weight: 700; }
         .report-item .value.good { color: #4ade80; }
         .report-item .value.bad { color: #f87171; }
         .report-item .value.warn { color: #fbbf24; }
 
-        .verdict {
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            font-weight: 800;
-        }
+        .verdict { text-align: center; padding: 12px; border-radius: 10px; margin-bottom: 10px; font-size: 1rem; font-weight: 800; }
         .verdict.excellent { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 2px solid #22c55e; }
         .verdict.good { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 2px solid #3b82f6; }
         .verdict.average { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 2px solid #fbbf24; }
         .verdict.poor { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 2px solid #ef4444; }
 
-        .mistakes-list, .advice-list {
-            list-style: none;
-            font-size: 0.72rem;
+        .medals-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 10px; }
+        .medal {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.4); border-radius: 10px;
+            padding: 8px 12px; min-width: 90px;
+            border: 2px solid #444; opacity: 0.4;
+            transition: all 0.3s;
         }
+        .medal.earned { opacity: 1; border-color: #fbbf24; box-shadow: 0 0 15px rgba(251,191,36,0.4); }
+        .medal .medal-icon { font-size: 1.5rem; }
+        .medal .medal-name { font-size: 0.65rem; color: #cbd5e1; margin-top: 3px; text-align: center; }
+        .medal.earned .medal-name { color: #f3e0aa; font-weight: 700; }
+
+        .mistakes-list, .advice-list { list-style: none; font-size: 0.72rem; }
         .mistakes-list li, .advice-list li {
-            padding: 5px 8px;
-            margin-bottom: 4px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 6px;
-            border-right: 3px solid #ef4444;
-            line-height: 1.5;
+            padding: 5px 8px; margin-bottom: 4px;
+            background: rgba(0,0,0,0.3); border-radius: 6px;
+            border-right: 3px solid #ef4444; line-height: 1.5;
         }
         .advice-list li { border-right-color: #22c55e; }
 
         .hand-history-item {
-            background: rgba(0,0,0,0.3);
-            border-radius: 6px;
-            padding: 6px 8px;
-            margin-bottom: 4px;
-            font-size: 0.68rem;
+            background: rgba(0,0,0,0.3); border-radius: 6px;
+            padding: 6px 8px; margin-bottom: 4px; font-size: 0.68rem;
             border-right: 3px solid #64748b;
         }
         .hand-history-item.win { border-right-color: #22c55e; }
@@ -524,20 +359,20 @@
         .hand-history-item .row { display: flex; justify-content: space-between; padding: 1px 0; }
         .hand-history-item .row .label { color: #94a3b8; }
 
-        .btn-restart {
-            width: 100%;
-            background: linear-gradient(135deg, #c59b27, #a17c1a);
-            border: none;
-            border-radius: 10px;
-            color: #1f2937;
-            font-weight: 800;
-            padding: 10px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            margin-top: 8px;
-            font-family: 'Tahoma', sans-serif;
+        .chart-container {
+            background: rgba(0,0,0,0.3); border-radius: 8px;
+            padding: 8px; margin-top: 6px;
         }
-        .btn-restart:hover { opacity: 0.9; }
+        .chart-container canvas { width: 100%; height: 120px; display: block; }
+
+        .btn-restart, .btn-export {
+            width: 100%; background: linear-gradient(135deg, #c59b27, #a17c1a);
+            border: none; border-radius: 10px; color: #1f2937;
+            font-weight: 800; padding: 10px; font-size: 0.85rem;
+            cursor: pointer; margin-top: 8px; font-family: 'Tahoma', sans-serif;
+        }
+        .btn-export { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; margin-top: 4px; }
+        .btn-restart:hover, .btn-export:hover { opacity: 0.9; }
 
         @media (max-height: 700px) {
             .game-table { padding: 4px 3px; }
@@ -551,7 +386,7 @@
             .info-box { min-width: 60px; padding: 3px 8px; }
             .card { width: 44px; height: 65px; }
             .game-button { min-width: 45px; padding: 4px 6px; font-size: 0.55rem; }
-            .training-hud { min-width: 150px; font-size: 0.6rem; }
+            .training-hud { min-width: 160px; font-size: 0.6rem; }
         }
     </style>
 </head>
@@ -563,16 +398,33 @@
         <div class="wave wave-3"></div>
     </div>
 
+    <!-- ==================== HUD تمرینی ==================== -->
     <div class="training-hud" id="trainingHud">
         <div class="hud-title">
             <span>🎓 تمرین</span>
             <span id="hudHandCount">دست ۰</span>
         </div>
-        <div class="hud-row"><span>شروع:</span><span class="value" id="hudStart">$1000</span></div>
         <div class="hud-row"><span>موجودی:</span><span class="value" id="hudBankroll">$1000</span></div>
-        <div class="hud-row"><span>سود/زیان:</span><span class="value" id="hudProfit">$0</span></div>
         <div class="hud-row"><span>دقت:</span><span class="value" id="hudAccuracy">-</span></div>
+        <div class="hud-row"><span>سری صحیح:</span><span class="value" id="hudStreak">0</span></div>
         <div class="hud-row"><span>W/L/P:</span><span class="value" id="hudWLP">0/0/0</span></div>
+        <div style="margin-top:4px;border-top:1px solid rgba(34,197,94,0.3);padding-top:4px;">
+            <div style="color:#94a3b8;font-size:0.55rem;margin-bottom:2px;">حالت تمرین موقعیتی:</div>
+            <select id="hudDrillSelect" class="hud-drill-select" onchange="changeDrillMode(this.value)">
+                <option value="off">🎯 عادی (همه دست‌ها)</option>
+                <option value="soft">🌟 فقط Soft Totals</option>
+                <option value="pairs">👯 فقط Pairs</option>
+                <option value="vsAce">♠️ فقط در برابر Ace</option>
+                <option value="hard12-16">💪 Hard 12-16 vs 7-A</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ==================== Feedback Toast ==================== -->
+    <div class="feedback-toast" id="feedbackToast">
+        <div class="fb-title" id="fbTitle"></div>
+        <div class="fb-body" id="fbBody"></div>
+        <button class="fb-why-btn" id="fbWhyBtn" style="display:none;" onclick="showWhyExplanation()">🤔 چرا؟</button>
     </div>
 
     <div class="game-wrapper">
@@ -588,6 +440,7 @@
                     <div id="currentBetDisplay" class="info-value">$0</div>
                 </div>
                 <button id="btnTraining" class="training-toggle" onclick="toggleTrainingMode()">🎓 تمرین</button>
+                <button id="btnPureMode" class="training-toggle" onclick="togglePureStrategyMode()">🎯 فقط استراتژی</button>
                 <button id="btnReport" class="training-toggle" onclick="showTrainingReport()" style="display:none;">📊 گزارش</button>
             </div>
         </header>
@@ -659,13 +512,24 @@
 
     // ==================== TRAINING STATE ====================
     let trainingMode = false;
+    let pureStrategyMode = false;  // بدون پول
+    let drillMode = 'off';         // 'off' | 'soft' | 'pairs' | 'vsAce' | 'hard12-16'
+    let currentStreak = 0;
+    let longestStreak = 0;
+    let totalFeedbackCorrect = 0;
+    let totalFeedbackWrong = 0;
+    let lastFeedback = null;       // برای دکمه "چرا؟"
+    let feedbackTimeout = null;
+    let handCounter = 0;           // شمارنده دست (شامل همه، حتی رد شده‌ها)
+
     let trainingData = {
         startBankroll: 0,
         hands: [],
         decisions: [],
         sessionStartTime: null,
         currentHandRecord: null,
-        recharged: false
+        recharged: false,
+        bankrollHistory: []  // برای نمودار
     };
 
     const suits = ['♠', '♥', '♦', '♣'];
@@ -745,20 +609,15 @@
         if (['K','Q','J','10'].includes(val)) return 10;
         return parseInt(val);
     }
-
     function isSoft(hand) {
         let sum = 0, aces = 0;
         for (let card of hand) {
             if (card.val === 'A') { aces++; sum += 11; }
             else sum += cardValue(card);
         }
-        while (sum > 21 && aces > 0) {
-            sum -= 10;
-            aces--;
-        }
+        while (sum > 21 && aces > 0) { sum -= 10; aces--; }
         return aces > 0;
     }
-
     function calculateHand(hand) {
         let sum = 0, aces = 0;
         for (let card of hand) { if (card.val === 'A') { aces++; sum += 11; } else { sum += cardValue(card); } }
@@ -790,27 +649,44 @@
         }
         bankroll = normalBankroll;
     }
-
     function saveBankroll() {
         if (trainingMode) return;
         normalBankroll = bankroll;
         localStorage.setItem('blackjack_bankroll_normal', normalBankroll);
         showStatus('موجودی ذخیره شد. 💾');
     }
-
     window.addEventListener('beforeunload', () => {
-        if (!trainingMode) {
-            normalBankroll = bankroll;
-        }
+        if (!trainingMode) normalBankroll = bankroll;
         localStorage.setItem('blackjack_bankroll_normal', normalBankroll);
     });
 
+    // ==================== DRILL MODE ====================
+    function changeDrillMode(val) {
+        drillMode = val;
+        const names = {
+            'off': 'عادی', 'soft': 'Soft Totals', 'pairs': 'Pairs',
+            'vsAce': 'vs Ace', 'hard12-16': 'Hard 12-16'
+        };
+        if (trainingMode) showStatus('🎯 حالت تمرین: ' + names[val]);
+    }
+
+    function drillMatchesCondition(playerCards, dealerUpcard) {
+        if (drillMode === 'off') return true;
+        const pVal = calculateHand(playerCards);
+        const dVal = cardValue(dealerUpcard);
+
+        if (drillMode === 'soft') return isSoft(playerCards);
+        if (drillMode === 'pairs') return playerCards.length === 2 && cardValue(playerCards[0]) === cardValue(playerCards[1]);
+        if (drillMode === 'vsAce') return dealerUpcard.val === 'A';
+        if (drillMode === 'hard12-16') {
+            return !isSoft(playerCards) && pVal >= 12 && pVal <= 16 && dVal >= 7;
+        }
+        return true;
+    }
+
     // ==================== TRAINING MODE ====================
     function toggleTrainingMode() {
-        if (gameState !== 'BETTING') {
-            showStatus('برای تغییر حالت، تا پایان دست صبر کنید.');
-            return;
-        }
+        if (gameState !== 'BETTING') { showStatus('برای تغییر حالت، تا پایان دست صبر کنید.'); return; }
 
         const btn = document.getElementById('btnTraining');
         const btnReport = document.getElementById('btnReport');
@@ -827,13 +703,19 @@
             bankroll = 1000;
             currentBet = 0;
             betPerHand = [];
+            currentStreak = 0;
+            longestStreak = 0;
+            totalFeedbackCorrect = 0;
+            totalFeedbackWrong = 0;
+            handCounter = 0;
             trainingData = {
                 startBankroll: 1000,
                 hands: [],
                 decisions: [],
                 sessionStartTime: Date.now(),
                 currentHandRecord: null,
-                recharged: false
+                recharged: false,
+                bankrollHistory: [1000]
             };
 
             btn.classList.add('active');
@@ -842,29 +724,79 @@
             hud.classList.add('show');
             updateTrainingHud();
             updateUI();
-            showStatus('🎓 حالت تمرینی فعال شد. موجودی: ۱۰۰۰$ (عادی: ' + formatNumber(normalBankroll) + '$)');
-
+            showStatus('🎓 حالت تمرینی فعال شد.');
         } else {
-            const ok = confirm('🚪 خروج از حالت تمرینی\n\nگزارش فعلی نمایش داده می‌شود، سپس موجودی عادی (' + formatNumber(normalBankroll) + '$) بازیابی می‌شود.\n\nموافقید؟');
+            const ok = confirm('🚪 خروج از حالت تمرینی\n\nگزارش نمایش داده می‌شود و موجودی عادی بازیابی می‌شود.\n\nموافقید؟');
             if (!ok) return;
 
-            if (trainingData.hands.length > 0) {
-                showTrainingReport();
-            }
+            if (trainingData.hands.length > 0) showTrainingReport();
 
             setTimeout(() => {
                 trainingMode = false;
                 bankroll = normalBankroll;
                 currentBet = 0;
                 betPerHand = [];
-
                 btn.classList.remove('active');
                 btn.textContent = '🎓 تمرین';
                 btnReport.style.display = 'none';
                 hud.classList.remove('show');
                 updateUI();
-                showStatus('حالت تمرینی غیرفعال شد. موجودی عادی شما: ' + formatNumber(bankroll) + '$');
+                showStatus('حالت تمرینی غیرفعال شد.');
             }, 300);
+        }
+    }
+
+    // ==================== PURE STRATEGY MODE ====================
+    function togglePureStrategyMode() {
+        if (gameState !== 'BETTING') { showStatus('برای تغییر حالت، تا پایان دست صبر کنید.'); return; }
+
+        const btn = document.getElementById('btnPureMode');
+        const hud = document.getElementById('trainingHud');
+
+        if (!pureStrategyMode) {
+            const ok = confirm('🎯 حالت "فقط استراتژی"\n\nبدون پول. موجودی نامحدود.\nفقط روی درستی تصمیم‌ها تمرکز کنید.\n\nموافقید؟');
+            if (!ok) return;
+
+            if (!trainingMode) {
+                normalBankroll = bankroll;
+                localStorage.setItem('blackjack_bankroll_normal', normalBankroll);
+                trainingMode = true;
+                trainingData = {
+                    startBankroll: 1000, hands: [], decisions: [],
+                    sessionStartTime: Date.now(), currentHandRecord: null, recharged: false,
+                    bankrollHistory: [1000]
+                };
+            }
+
+            pureStrategyMode = true;
+            bankroll = 1000000;
+            currentBet = 100;
+            currentStreak = 0;
+            longestStreak = 0;
+            totalFeedbackCorrect = 0;
+            totalFeedbackWrong = 0;
+
+            btn.classList.add('pure');
+            btn.textContent = '🎯 فقط استراتژی فعال';
+            if (!document.getElementById('btnTraining').classList.contains('active')) {
+                document.getElementById('btnTraining').classList.add('active');
+                document.getElementById('btnTraining').textContent = '🎓 تمرین فعال';
+                document.getElementById('btnReport').style.display = 'inline-block';
+            }
+            hud.classList.add('show');
+            updateTrainingHud();
+            updateUI();
+            showStatus('🎯 حالت فقط استراتژی فعال. روی درستی تصمیم‌ها تمرکز کنید!');
+        } else {
+            pureStrategyMode = false;
+            btn.classList.remove('pure');
+            btn.textContent = '🎯 فقط استراتژی';
+            if (trainingMode) {
+                bankroll = normalBankroll;
+            }
+            updateUI();
+            updateTrainingHud();
+            showStatus('حالت فقط استراتژی غیرفعال شد.');
         }
     }
 
@@ -874,24 +806,21 @@
         const wins = hands.filter(h => h.result === 'win').length;
         const losses = hands.filter(h => h.result === 'loss').length;
         const pushes = hands.filter(h => h.result === 'push').length;
-        const profit = bankroll - trainingData.startBankroll;
-        const correct = trainingData.decisions.filter(d => d.correct).length;
-        const total = trainingData.decisions.length;
-        const accuracy = total > 0 ? Math.round((correct / total) * 100) + '%' : '-';
+        const total = totalFeedbackCorrect + totalFeedbackWrong;
+        const accuracy = total > 0 ? Math.round((totalFeedbackCorrect / total) * 100) + '%' : '-';
 
-        document.getElementById('hudHandCount').textContent = 'دست ' + hands.length;
-        document.getElementById('hudStart').textContent = '$' + formatNumber(trainingData.startBankroll);
+        document.getElementById('hudHandCount').textContent = 'دست ' + handCounter;
         const bankrollEl = document.getElementById('hudBankroll');
-        bankrollEl.textContent = '$' + formatNumber(Math.max(0, bankroll));
-        const profitEl = document.getElementById('hudProfit');
-        profitEl.textContent = (profit >= 0 ? '+' : '') + '$' + formatNumber(profit);
-        profitEl.className = 'value ' + (profit >= 0 ? '' : 'bad');
+        bankrollEl.textContent = pureStrategyMode ? '♾️ نامحدود' : ('$' + formatNumber(Math.max(0, bankroll)));
         const accEl = document.getElementById('hudAccuracy');
         accEl.textContent = accuracy;
         if (total > 0) {
-            const acc = correct / total;
+            const acc = totalFeedbackCorrect / total;
             accEl.className = 'value ' + (acc >= 0.8 ? '' : acc >= 0.6 ? 'warn' : 'bad');
         }
+        const streakEl = document.getElementById('hudStreak');
+        streakEl.textContent = currentStreak + (longestStreak > 0 ? ' (' + longestStreak + ')' : '');
+        streakEl.className = 'value ' + (currentStreak >= 5 ? '' : currentStreak >= 3 ? 'warn' : '');
         document.getElementById('hudWLP').textContent = wins + '/' + losses + '/' + pushes;
     }
 
@@ -899,8 +828,7 @@
     function makeHudDraggable() {
         const hud = document.getElementById('trainingHud');
         let isDragging = false;
-        let startX = 0, startY = 0;
-        let startLeft = 0, startTop = 0;
+        let startX = 0, startY = 0, startLeft = 0, startTop = 0;
 
         const savedPos = localStorage.getItem('blackjack_hud_pos');
         if (savedPos) {
@@ -912,69 +840,151 @@
                     hud.style.right = 'auto';
                     hud.style.bottom = 'auto';
                 }
-            } catch (e) { /* ignore */ }
+            } catch (e) {}
         }
 
         function getPoint(e) {
-            if (e.touches && e.touches.length > 0) {
-                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-            }
+            if (e.touches && e.touches.length > 0) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
             return { x: e.clientX, y: e.clientY };
         }
-
         function onStart(e) {
             if (!hud.classList.contains('show')) return;
+            if (e.target.tagName === 'SELECT' || e.target.tagName === 'OPTION') return;
             isDragging = true;
             hud.classList.add('dragging');
             const point = getPoint(e);
-            startX = point.x;
-            startY = point.y;
+            startX = point.x; startY = point.y;
             const rect = hud.getBoundingClientRect();
-            startLeft = rect.left;
-            startTop = rect.top;
+            startLeft = rect.left; startTop = rect.top;
             hud.style.transition = 'none';
             if (e.cancelable) e.preventDefault();
         }
-
         function onMove(e) {
             if (!isDragging) return;
             const point = getPoint(e);
-            const dx = point.x - startX;
-            const dy = point.y - startY;
-            let newLeft = startLeft + dx;
-            let newTop = startTop + dy;
-
-            const w = hud.offsetWidth;
-            const h = hud.offsetHeight;
-            newLeft = Math.max(0, Math.min(window.innerWidth - w, newLeft));
-            newTop = Math.max(0, Math.min(window.innerHeight - h, newTop));
-
+            let newLeft = startLeft + (point.x - startX);
+            let newTop = startTop + (point.y - startY);
+            newLeft = Math.max(0, Math.min(window.innerWidth - hud.offsetWidth, newLeft));
+            newTop = Math.max(0, Math.min(window.innerHeight - hud.offsetHeight, newTop));
             hud.style.left = newLeft + 'px';
             hud.style.top = newTop + 'px';
             hud.style.right = 'auto';
             hud.style.bottom = 'auto';
             if (e.cancelable) e.preventDefault();
         }
-
         function onEnd() {
             if (!isDragging) return;
             isDragging = false;
             hud.classList.remove('dragging');
             const rect = hud.getBoundingClientRect();
             localStorage.setItem('blackjack_hud_pos', JSON.stringify({
-                left: Math.round(rect.left),
-                top: Math.round(rect.top)
+                left: Math.round(rect.left), top: Math.round(rect.top)
             }));
         }
-
         hud.addEventListener('mousedown', onStart);
         document.addEventListener('mousemove', onMove);
         document.addEventListener('mouseup', onEnd);
-
         hud.addEventListener('touchstart', onStart, { passive: false });
         document.addEventListener('touchmove', onMove, { passive: false });
         document.addEventListener('touchend', onEnd);
         document.addEventListener('touchcancel', onEnd);
+    }
+
+    // ==================== INSTANT FEEDBACK ====================
+    function showFeedback(actualAction, optimalAction, wasCorrect, playerHand, dealerUpcard) {
+        const toast = document.getElementById('feedbackToast');
+        const title = document.getElementById('fbTitle');
+        const body = document.getElementById('fbBody');
+        const whyBtn = document.getElementById('fbWhyBtn');
+
+        if (feedbackTimeout) clearTimeout(feedbackTimeout);
+
+        if (wasCorrect) {
+            toast.classList.remove('wrong');
+            toast.classList.add('correct');
+            title.innerHTML = '✅ تصمیم درست!';
+            body.innerHTML = `حرکت <b>${actionName(actualAction)}</b> کاملاً مطابق استراتژی پایه بود.`;
+            whyBtn.style.display = 'none';
+            currentStreak++;
+            totalFeedbackCorrect++;
+            if (currentStreak > longestStreak) longestStreak = currentStreak;
+        } else {
+            toast.classList.remove('correct');
+            toast.classList.add('wrong');
+            title.innerHTML = '❌ تصمیم اشتباه';
+            body.innerHTML = `شما <b>${actionName(actualAction)}</b> انتخاب کردید، اما استراتژی پایه می‌گوید <b>${actionName(optimalAction)}</b>.`;
+            whyBtn.style.display = 'inline-block';
+            lastFeedback = { actualAction, optimalAction, playerHand, dealerUpcard };
+            currentStreak = 0;
+            totalFeedbackWrong++;
+        }
+
+        toast.classList.add('show');
+
+        // هایلایت دکمه درست
+        highlightCorrectButton(optimalAction, wasCorrect);
+
+        feedbackTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+            clearButtonFeedback();
+        }, wasCorrect ? 1800 : 3500);
+
+        updateTrainingHud();
+    }
+
+    function highlightCorrectButton(optimalAction, wasCorrect) {
+        clearButtonFeedback();
+        const map = { 'H': 'btnHit', 'S': 'btnStand', 'D': 'btnDouble', 'P': 'btnSplit' };
+        const btnId = map[optimalAction];
+        if (btnId) {
+            const btn = document.getElementById(btnId);
+            if (btn) btn.classList.add('feedback-correct');
+        }
+    }
+
+    function clearButtonFeedback() {
+        ['btnHit', 'btnStand', 'btnDouble', 'btnSplit'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.classList.remove('feedback-correct', 'feedback-wrong');
+        });
+    }
+
+    function showWhyExplanation() {
+        if (!lastFeedback) return;
+        const { optimalAction, playerHand, dealerUpcard } = lastFeedback;
+        const pVal = calculateHand(playerHand);
+        const isSoftHand = isSoft(playerHand);
+        const dVal = cardValue(dealerUpcard);
+        const dRank = dealerUpcard.val;
+
+        let explanation = '';
+        if (optimalAction === 'S') {
+            explanation = `با امتیاز ${pVal}، در برابر کارت ${dRank} دیلر، بهترین کار ایستادن است. `;
+            if (isSoftHand) explanation += `چون دست شما نرم است و ریسک سوختن بالا.`;
+            else if (dVal >= 2 && dVal <= 6) explanation += `چون دیلر احتمالاً می‌سوزد (بازیکن با دست ضعیف دیلر معمولاً می‌برد).`;
+            else explanation += `چون کارت دیلر قوی است و احتمال سوختن شما بالاست.`;
+        } else if (optimalAction === 'H') {
+            explanation = `با امتیاز ${pVal} در برابر ${dRank}، باید Hit بزنید. `;
+            if (pVal <= 11) explanation += `چون احتمالاً سوختن شما صفر است و شانس بهبود دارید.`;
+            else if (isSoftHand) explanation += `دست نرم انعطاف‌پذیر است و می‌توانید با خیال راحت Hit بزنید.`;
+            else explanation += `چون ایستادن با این امتیاز در برابر این کارت دیلر ضرر می‌دهد.`;
+        } else if (optimalAction === 'D') {
+            explanation = `با امتیاز ${pVal} در برابر ${dRank}، باید Double کنید. `;
+            explanation += `چون مزیت واضحی دارید و باید سود بالقوه را دو برابر کنید.`;
+        } else if (optimalAction === 'P') {
+            explanation = `با این جفت، در برابر ${dRank}، باید Split کنید. `;
+            explanation += `چون جدا کردن به نفع شماست و شانس برد را افزایش می‌دهد.`;
+        }
+
+        const toast = document.getElementById('feedbackToast');
+        document.getElementById('fbBody').innerHTML = explanation;
+        document.getElementById('fbWhyBtn').style.display = 'none';
+
+        if (feedbackTimeout) clearTimeout(feedbackTimeout);
+        feedbackTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+            clearButtonFeedback();
+        }, 6000);
     }
 
     // ==================== OPTIMAL ACTION ====================
@@ -1030,6 +1040,7 @@
         const optimal = getOptimalAction(playerHand, dealerUpcard);
         const correct = (optimal === actualAction) ||
             (optimal === 'D' && (actualAction === 'H' || actualAction === 'S'));
+
         trainingData.decisions.push({
             playerHand: playerHand.map(c => c.val + c.suit).join(' '),
             playerValue: calculateHand(playerHand),
@@ -1039,26 +1050,29 @@
             optimal: optimal,
             correct: correct
         });
+
+        // بازخورد آنی
+        showFeedback(actualAction, optimal, correct, playerHand, dealerUpcard);
         updateTrainingHud();
     }
 
     // ==================== UI UPDATE ====================
     function updateUI() {
-        document.getElementById('bankrollDisplay').innerText = `$${formatNumber(bankroll)}`;
+        document.getElementById('bankrollDisplay').innerText = pureStrategyMode ? '♾️' : `$${formatNumber(bankroll)}`;
         let displayBet = splitActive ? betPerHand.reduce((a, b) => a + b, 0) : currentBet;
-        document.getElementById('currentBetDisplay').innerText = `$${formatNumber(displayBet)}`;
+        document.getElementById('currentBetDisplay').innerText = pureStrategyMode ? '—' : `$${formatNumber(displayBet)}`;
         const isPlaying = gameState === 'PLAYING';
         const isBetting = gameState === 'BETTING';
         const isInsurance = gameState === 'INSURANCE';
 
-        document.getElementById('btnDeal').disabled = !isBetting || currentBet === 0;
+        document.getElementById('btnDeal').disabled = !isBetting || (!pureStrategyMode && currentBet === 0);
         document.getElementById('btnHit').disabled = !isPlaying || splitAcesActive;
         document.getElementById('btnStand').disabled = !isPlaying;
         document.getElementById('btnDouble').disabled = !isPlaying ||
-            bankroll < (splitActive ? betPerHand[currentHandIndex] : currentBet) ||
+            (pureStrategyMode ? false : bankroll < (splitActive ? betPerHand[currentHandIndex] : currentBet)) ||
             (splitActive ? playerHands[currentHandIndex].length > 2 : playerHands[0].length !== 2) ||
             splitAcesActive;
-        document.getElementById('btnSplit').disabled = !isPlaying || splitActive || playerHands.length !== 1 || playerHands[0].length !== 2 || cardValue(playerHands[0][0]) !== cardValue(playerHands[0][1]) || bankroll < currentBet;
+        document.getElementById('btnSplit').disabled = !isPlaying || splitActive || playerHands.length !== 1 || playerHands[0].length !== 2 || cardValue(playerHands[0][0]) !== cardValue(playerHands[0][1]) || (!pureStrategyMode && bankroll < currentBet);
         document.getElementById('btnSurrender').disabled = !isPlaying || !canSurrender || hasActed || splitActive;
 
         const insuranceAvailable = isInsurance && dealerHand.length > 0 && dealerHand[0].val === 'A';
@@ -1082,14 +1096,11 @@
             saveBtn.disabled = true;
             saveBtn.style.opacity = '0.4';
             saveBtn.style.cursor = 'not-allowed';
-            saveBtn.title = 'در حالت تمرین ذخیره غیرفعال است';
         } else {
             saveBtn.disabled = false;
             saveBtn.style.opacity = '';
             saveBtn.style.cursor = '';
-            saveBtn.title = '';
         }
-
         updateDealerScore();
     }
 
@@ -1132,10 +1143,10 @@
     function getBasicStrategyAdvice(playerHand, dealerUpcard) {
         const code = getOptimalAction(playerHand, dealerUpcard);
         const map = {
-            'H': 'طبق استراتژی پایه: کارت بیشتر بزنید (Hit)',
-            'S': 'طبق استراتژی پایه: بایستید (Stand)',
-            'D': 'طبق استراتژی پایه: دوبل بزنید (Double)',
-            'P': 'طبق استراتژی پایه: اسپلیت کنید (Split)'
+            'H': 'طبق استراتژی پایه: Hit',
+            'S': 'طبق استراتژی پایه: Stand',
+            'D': 'طبق استراتژی پایه: Double',
+            'P': 'طبق استراتژی پایه: Split'
         };
         return map[code] || 'طبق استراتژی پایه تصمیم بگیرید.';
     }
@@ -1167,15 +1178,21 @@
     // ==================== ACTIONS ====================
     function rechargeBankroll() {
         if (trainingMode) {
-            if (confirm('🔄 ریست تمرین\n\nموجودی به ۱۰۰۰$ ریست می‌شود و گزارش فعلی نمایش داده می‌شود.\nموجودی عادی شما (' + formatNumber(normalBankroll) + '$) دست نخورده باقی می‌ماند.\n\nموافقید؟')) {
+            if (confirm('🔄 ریست تمرین\n\nموجودی به ۱۰۰۰$ برمی‌گردد و گزارش نمایش داده می‌شود.\n\nموافقید؟')) {
                 if (trainingData.hands.length > 0) showTrainingReport();
                 setTimeout(() => {
-                    bankroll = 1000;
-                    currentBet = 0;
+                    bankroll = pureStrategyMode ? 1000000 : 1000;
+                    currentBet = pureStrategyMode ? 100 : 0;
                     trainingData.hands = [];
                     trainingData.decisions = [];
                     trainingData.startBankroll = 1000;
                     trainingData.recharged = false;
+                    trainingData.bankrollHistory = [1000];
+                    currentStreak = 0;
+                    longestStreak = 0;
+                    totalFeedbackCorrect = 0;
+                    totalFeedbackWrong = 0;
+                    handCounter = 0;
                     updateUI();
                     updateTrainingHud();
                     showStatus('تمرین ریست شد.');
@@ -1190,6 +1207,7 @@
     }
     function addBet(amount) {
         if (gameState !== 'BETTING') return;
+        if (pureStrategyMode) return;
         if (bankroll >= amount) {
             bankroll -= amount; currentBet += amount; updateUI();
             showStatus(`شرط فعلی: $${formatNumber(currentBet)}`);
@@ -1197,6 +1215,7 @@
     }
     function addManualBet() {
         if (gameState !== 'BETTING') return showStatus('در حال حاضر نمی‌توانید شرط ببندید.');
+        if (pureStrategyMode) { showStatus('در حالت فقط استراتژی نیازی به شرط نیست.'); return; }
         const input = document.getElementById('manualBetInput');
         const amount = parseFloat(input.value);
         if (isNaN(amount) || amount <= 0) return showStatus('مبلغ معتبر وارد کنید.', false, true);
@@ -1269,11 +1288,26 @@
 
     // ==================== GAME FLOW ====================
     function startRound() {
-        if (currentBet === 0 || gameState !== 'BETTING') return;
+        if (gameState !== 'BETTING') return;
+        if (!pureStrategyMode && currentBet === 0) return;
+        if (pureStrategyMode && currentBet === 0) currentBet = 100;
+
         if (dealerInterval) { clearInterval(dealerInterval); dealerInterval = null; }
-        createDeck();
-        playerHands = [[deck.pop(), deck.pop()]];
-        dealerHand = [deck.pop(), deck.pop()];
+
+        // در حالت Drill Mode: کارت‌ها را تا رسیدن به شرایط مورد نظر تکرار کن
+        let attempts = 0;
+        let testPlayerHand, testDealerHand;
+        do {
+            createDeck();
+            testPlayerHand = [deck.pop(), deck.pop()];
+            testDealerHand = [deck.pop(), deck.pop()];
+            attempts++;
+        } while (drillMode !== 'off' && !drillMatchesCondition(testPlayerHand, testDealerHand[0]) && attempts < 200);
+
+        playerHands = [testPlayerHand];
+        dealerHand = testDealerHand;
+
+        handCounter++;
         betPerHand = [currentBet]; currentHandIndex = 0;
         splitActive = false; splitAcesActive = false;
         insuranceTaken = false; insuranceBet = 0;
@@ -1281,9 +1315,9 @@
         gameState = 'PLAYING';
 
         if (trainingMode) {
-            const betPercent = (currentBet / (bankroll + currentBet)) * 100;
+            const betPercent = pureStrategyMode ? 0 : (currentBet / (bankroll + currentBet)) * 100;
             trainingData.currentHandRecord = {
-                handNumber: trainingData.hands.length + 1,
+                handNumber: handCounter,
                 bankrollBefore: bankroll + currentBet,
                 bet: currentBet,
                 betPercent: betPercent,
@@ -1297,7 +1331,12 @@
         }
 
         renderDealerCards(true); renderPlayerHands(); updateUI();
-        if (dealerHand[0].val === 'A') { gameState = 'INSURANCE'; updateUI(); showStatus('دیلر آس دارد. آیا بیمه می‌خواهید؟'); return; }
+        if (dealerHand[0].val === 'A') {
+            gameState = 'INSURANCE';
+            updateUI();
+            showStatus('دیلر آس دارد. آیا بیمه می‌خواهید؟');
+            return;
+        }
         checkDealerBlackjack();
     }
 
@@ -1307,85 +1346,48 @@
 
         if (dealerHasBJ && playerHasBJ) {
             renderDealerCards(false);
-            bankroll += currentBet;
-            if (insuranceTaken) bankroll += insuranceBet * 3;
+            if (!pureStrategyMode) { bankroll += currentBet; if (insuranceTaken) bankroll += insuranceBet * 3; }
             showStatus('هر دو بلک‌جک دارید! مساوی');
-
-            if (trainingMode && trainingData.currentHandRecord) {
-                trainingData.currentHandRecord.result = 'push';
-                trainingData.currentHandRecord.profit = 0;
-                trainingData.hands.push(trainingData.currentHandRecord);
-                trainingData.currentHandRecord = null;
-                updateTrainingHud();
-            }
-
-            gameState = 'DEALER_TURN';
-            updateUI();
+            recordTrainingResult('push', 0);
+            gameState = 'DEALER_TURN'; updateUI();
             setTimeout(() => resolveRound('push'), 800);
             return;
         }
-
         if (dealerHasBJ) {
             renderDealerCards(false);
             let insuranceWin = 0;
-            if (insuranceTaken) {
-                insuranceWin = insuranceBet * 3;
-                bankroll += insuranceWin;
-                showStatus('دیلر بلک‌جک دارد. بیمه برد!', true);
-            } else {
-                showStatus('دیلر بلک‌جک آورد. باختید.', false, true);
-            }
-
-            if (trainingMode && trainingData.currentHandRecord) {
-                trainingData.currentHandRecord.result = 'loss';
-                trainingData.currentHandRecord.profit = -currentBet + insuranceWin;
-                trainingData.hands.push(trainingData.currentHandRecord);
-                trainingData.currentHandRecord = null;
-                updateTrainingHud();
-            }
-
-            gameState = 'DEALER_TURN';
-            updateUI();
+            if (insuranceTaken && !pureStrategyMode) { insuranceWin = insuranceBet * 3; bankroll += insuranceWin; showStatus('دیلر بلک‌جک دارد. بیمه برد!', true); }
+            else showStatus('دیلر بلک‌جک آورد. باختید.', false, true);
+            recordTrainingResult('loss', pureStrategyMode ? 0 : (-currentBet + insuranceWin));
+            gameState = 'DEALER_TURN'; updateUI();
             setTimeout(() => resolveRound('loss'), 800);
             return;
         }
-
         if (playerHasBJ) {
             renderDealerCards(false);
             const winAmount = currentBet * 1.5;
-            bankroll += currentBet + winAmount;
-            showStatus(`بلک‌جک! 🎉 شما ${formatNumber(winAmount)}$ بردید!`, true);
-
-            if (trainingMode && trainingData.currentHandRecord) {
-                trainingData.currentHandRecord.result = 'win';
-                trainingData.currentHandRecord.profit = winAmount;
-                trainingData.hands.push(trainingData.currentHandRecord);
-                trainingData.currentHandRecord = null;
-                updateTrainingHud();
-            }
-
-            gameState = 'DEALER_TURN';
-            updateUI();
+            if (!pureStrategyMode) bankroll += currentBet + winAmount;
+            showStatus(`بلک‌جک! 🎉`, true);
+            recordTrainingResult('win', pureStrategyMode ? 0 : winAmount);
+            gameState = 'DEALER_TURN'; updateUI();
             setTimeout(() => resolveRound('win'), 800);
             return;
         }
-
         if (insuranceTaken) {
             showStatus(`بیمه باخت! ${formatNumber(insuranceBet)}$ از دست رفت.`, false, true);
-            insuranceTaken = false;
-            insuranceBet = 0;
+            insuranceTaken = false; insuranceBet = 0;
         }
-        gameState = 'PLAYING';
-        updateUI();
-        showStatus('نوبت شماست: کارت بیشتر، ایست، دوبل، اسپلیت یا تسلیم');
+        gameState = 'PLAYING'; updateUI();
+        showStatus('نوبت شماست.');
     }
 
     function playerInsurance(choice) {
         if (gameState !== 'INSURANCE') return;
         if (choice) {
             const halfBet = Math.floor(currentBet / 2);
-            if (bankroll < halfBet) return showStatus('موجودی برای بیمه کافی نیست.', false, true);
-            bankroll -= halfBet; insuranceBet = halfBet; insuranceTaken = true;
+            if (!pureStrategyMode && bankroll < halfBet) return showStatus('موجودی برای بیمه کافی نیست.', false, true);
+            if (!pureStrategyMode) bankroll -= halfBet;
+            insuranceBet = halfBet; insuranceTaken = true;
             showStatus('بیمه گرفته شد.');
         } else { insuranceTaken = false; insuranceBet = 0; showStatus('بیمه رد شد.'); }
         checkDealerBlackjack();
@@ -1398,16 +1400,9 @@
             recordDecision(playerHands[currentHandIndex], dealerHand[0], 'R');
         }
         const halfBet = Math.floor(currentBet / 2);
-        bankroll += halfBet;
-        showStatus(`تسلیم شدید. ${formatNumber(halfBet)}$ برگشت داده شد.`, false, true);
-
-        if (trainingMode && trainingData.currentHandRecord) {
-            trainingData.currentHandRecord.result = 'loss';
-            trainingData.currentHandRecord.profit = -halfBet;
-            trainingData.hands.push(trainingData.currentHandRecord);
-            trainingData.currentHandRecord = null;
-            updateTrainingHud();
-        }
+        if (!pureStrategyMode) bankroll += halfBet;
+        showStatus(`تسلیم شدید.`, false, true);
+        recordTrainingResult('loss', pureStrategyMode ? 0 : -halfBet);
         currentBet = 0; betPerHand = [];
         gameState = 'BETTING'; splitActive = false; currentHandIndex = 0;
         renderPlayerHands(); renderDealerCards(false); updateUI();
@@ -1433,13 +1428,7 @@
                 if (allHandsBust()) {
                     gameState = 'BETTING';
                     showStatus('همه دست‌ها سوختند!', false, true);
-                    if (trainingMode && trainingData.currentHandRecord) {
-                        trainingData.currentHandRecord.result = 'loss';
-                        trainingData.currentHandRecord.profit = -(splitActive ? betPerHand.reduce((a,b)=>a+b,0) : currentBet);
-                        trainingData.hands.push(trainingData.currentHandRecord);
-                        trainingData.currentHandRecord = null;
-                        updateTrainingHud();
-                    }
+                    recordTrainingResult('loss', pureStrategyMode ? 0 : -(splitActive ? betPerHand.reduce((a,b)=>a+b,0) : currentBet));
                     currentBet = 0; betPerHand = [];
                     splitActive = false; splitAcesActive = false;
                     currentHandIndex = 0; updateUI(); renderDealerCards(false);
@@ -1447,27 +1436,16 @@
                     return;
                 }
                 gameState = 'DEALER_TURN'; updateUI(); renderDealerCards(false);
-                showStatus('دست آخر سوخت! نوبت دیلر است.');
+                showStatus('نوبت دیلر.');
                 dealerPlay();
             }
         } else if (score === BLACKJACK) {
-            if (splitActive) {
-                if (currentHandIndex < playerHands.length - 1) {
-                    currentHandIndex++;
-                    hasActed = false;
-                    canSurrender = false;
-                    updateUI();
-                    renderPlayerHands();
-                    showStatus(`نوبت دست ${currentHandIndex+1}`);
-                } else {
-                    dealerPlay();
-                }
-            } else {
-                dealerPlay();
-            }
-        } else {
-            updateUI();
-        }
+            if (splitActive && currentHandIndex < playerHands.length - 1) {
+                currentHandIndex++; hasActed = false; canSurrender = false;
+                updateUI(); renderPlayerHands();
+                showStatus(`نوبت دست ${currentHandIndex+1}`);
+            } else dealerPlay();
+        } else updateUI();
     }
 
     function playerStand() {
@@ -1498,8 +1476,8 @@
         if (!splitActive && hand.length !== 2) return;
         if (splitActive && hand.length > 2) return;
         const bet = splitActive ? betPerHand[currentHandIndex] : currentBet;
-        if (bankroll < bet) { showStatus('موجودی برای دوبل کافی نیست.', false, true); return; }
-        bankroll -= bet;
+        if (!pureStrategyMode && bankroll < bet) { showStatus('موجودی برای دوبل کافی نیست.', false, true); return; }
+        if (!pureStrategyMode) bankroll -= bet;
         if (splitActive) betPerHand[currentHandIndex] *= 2;
         else currentBet *= 2;
         hand.push(deck.pop()); renderPlayerHands();
@@ -1513,13 +1491,7 @@
                 if (allHandsBust()) {
                     gameState = 'BETTING';
                     showStatus('همه دست‌ها سوختند!', false, true);
-                    if (trainingMode && trainingData.currentHandRecord) {
-                        trainingData.currentHandRecord.result = 'loss';
-                        trainingData.currentHandRecord.profit = -(splitActive ? betPerHand.reduce((a,b)=>a+b,0) : currentBet);
-                        trainingData.hands.push(trainingData.currentHandRecord);
-                        trainingData.currentHandRecord = null;
-                        updateTrainingHud();
-                    }
+                    recordTrainingResult('loss', pureStrategyMode ? 0 : -(splitActive ? betPerHand.reduce((a,b)=>a+b,0) : currentBet));
                     currentBet = 0; betPerHand = [];
                     splitActive = false; splitAcesActive = false;
                     currentHandIndex = 0; updateUI(); renderDealerCards(false);
@@ -1527,21 +1499,21 @@
                     return;
                 }
                 gameState = 'DEALER_TURN'; updateUI(); renderDealerCards(false);
-                showStatus('دست آخر سوخت! نوبت دیلر است.');
+                showStatus('نوبت دیلر.');
                 dealerPlay();
             }
         } else playerStand();
     }
 
     function playerSplit() {
-        if (gameState !== 'PLAYING' || splitActive || playerHands.length !== 1 || playerHands[0].length !== 2 || cardValue(playerHands[0][0]) !== cardValue(playerHands[0][1]) || bankroll < currentBet) return;
+        if (gameState !== 'PLAYING' || splitActive || playerHands.length !== 1 || playerHands[0].length !== 2 || cardValue(playerHands[0][0]) !== cardValue(playerHands[0][1]) || (!pureStrategyMode && bankroll < currentBet)) return;
         hasActed = true; canSurrender = false;
         if (trainingMode && trainingData.currentHandRecord) {
             trainingData.currentHandRecord.actions.push('Split');
             trainingData.currentHandRecord.splits++;
             recordDecision([...playerHands[0]], dealerHand[0], 'P');
         }
-        bankroll -= currentBet;
+        if (!pureStrategyMode) bankroll -= currentBet;
         betPerHand = [currentBet, currentBet];
         const card1 = playerHands[0][0];
         const card2 = playerHands[0][1];
@@ -1557,11 +1529,11 @@
         renderPlayerHands();
 
         if (splitAcesActive) {
-            showStatus('آس‌ها جدا شدند. هر دست یک کارت گرفت. نوبت دیلر است.');
+            showStatus('آس‌ها جدا شدند. نوبت دیلر.');
             updateUI();
             setTimeout(() => dealerPlay(), 700);
         } else {
-            showStatus('دست‌ها جدا شدند. نوبت دست اول است.');
+            showStatus('دست‌ها جدا شدند. نوبت دست اول.');
             updateUI();
         }
     }
@@ -1595,52 +1567,28 @@
                     totalWin += bet * 2;
                 }
             });
-            bankroll += totalWin;
-            showStatus(`دیلر سوخت! 🎉 شما ${formatNumber(totalWin)}$ بردید!`, true);
-            recordTrainingResult('win', bankroll - bankrollBefore);
+            if (!pureStrategyMode) bankroll += totalWin;
+            showStatus(`دیلر سوخت! 🎉`, true);
+            recordTrainingResult('win', pureStrategyMode ? 0 : (bankroll - bankrollBefore));
             resolveRound('win');
         } else {
             let totalWin = 0, totalLoss = 0;
             let hasWin = false, hasLoss = false, hasPush = false;
-
             playerHands.forEach((hand, idx) => {
                 const pScore = calculateHand(hand);
                 const bet = splitActive ? betPerHand[idx] : currentBet;
-                if (pScore > BLACKJACK) {
-                    totalLoss += bet;
-                    hasLoss = true;
-                } else if (pScore > dScore) {
-                    totalWin += bet * 2;
-                    hasWin = true;
-                } else if (pScore === dScore) {
-                    totalWin += bet;
-                    hasPush = true;
-                } else {
-                    totalLoss += bet;
-                    hasLoss = true;
-                }
+                if (pScore > BLACKJACK) { totalLoss += bet; hasLoss = true; }
+                else if (pScore > dScore) { totalWin += bet * 2; hasWin = true; }
+                else if (pScore === dScore) { totalWin += bet; hasPush = true; }
+                else { totalLoss += bet; hasLoss = true; }
             });
+            if (!pureStrategyMode) bankroll += totalWin;
+            const netProfit = pureStrategyMode ? 0 : (bankroll - bankrollBefore);
 
-            bankroll += totalWin;
-            const netProfit = bankroll - bankrollBefore;
-
-            if (hasWin && !hasLoss && !hasPush) {
-                showStatus(`شما ${formatNumber(totalWin)}$ بردید! 🎉`, true);
-                recordTrainingResult('win', netProfit);
-                resolveRound('win');
-            } else if (hasLoss && !hasWin && !hasPush) {
-                showStatus(`دیلر برنده شد. ${formatNumber(totalLoss)}$ باختید.`, false, true);
-                recordTrainingResult('loss', netProfit);
-                resolveRound('loss');
-            } else if (hasPush && !hasWin && !hasLoss) {
-                showStatus('مساوی (Push). شرط برگشت داده شد.');
-                recordTrainingResult('push', 0);
-                resolveRound('push');
-            } else {
-                showStatus(`نتیجه ترکیبی. سود/زیان خالص: ${netProfit >= 0 ? '+' : ''}${formatNumber(netProfit)}$`);
-                recordTrainingResult('mixed', netProfit);
-                resolveRound('mixed');
-            }
+            if (hasWin && !hasLoss && !hasPush) { showStatus('شما بردید! 🎉', true); recordTrainingResult('win', netProfit); resolveRound('win'); }
+            else if (hasLoss && !hasWin && !hasPush) { showStatus('باختید.', false, true); recordTrainingResult('loss', netProfit); resolveRound('loss'); }
+            else if (hasPush && !hasWin && !hasLoss) { showStatus('مساوی (Push).'); recordTrainingResult('push', 0); resolveRound('push'); }
+            else { showStatus('نتیجه ترکیبی.'); recordTrainingResult('mixed', netProfit); resolveRound('mixed'); }
         }
     }
 
@@ -1650,6 +1598,7 @@
         trainingData.currentHandRecord.profit = profit;
         trainingData.hands.push(trainingData.currentHandRecord);
         trainingData.currentHandRecord = null;
+        trainingData.bankrollHistory.push(pureStrategyMode ? 1000 : Math.max(0, bankroll));
         updateTrainingHud();
     }
 
@@ -1664,7 +1613,7 @@
     }
 
     function checkBankrupt() {
-        if (trainingMode && bankroll < 10 && !trainingData.recharged) {
+        if (trainingMode && !pureStrategyMode && bankroll < 10 && !trainingData.recharged) {
             setTimeout(() => {
                 trainingData.recharged = true;
                 showTrainingReport(true);
@@ -1674,14 +1623,8 @@
 
     // ==================== TRAINING REPORT ====================
     function showTrainingReport(bankrupt = false) {
-        if (!trainingMode) {
-            showStatus('ابتدا حالت تمرینی را فعال کنید.');
-            return;
-        }
-        if (trainingData.hands.length === 0) {
-            showStatus('هنوز دستی بازی نکرده‌اید.');
-            return;
-        }
+        if (!trainingMode) { showStatus('ابتدا حالت تمرینی را فعال کنید.'); return; }
+        if (trainingData.hands.length === 0) { showStatus('هنوز دستی بازی نکرده‌اید.'); return; }
 
         const hands = trainingData.hands;
         const decisions = trainingData.decisions;
@@ -1690,8 +1633,8 @@
         const pushes = hands.filter(h => h.result === 'push').length;
         const totalHands = hands.length;
         const totalProfit = hands.reduce((sum, h) => sum + h.profit, 0);
-        const finalBankroll = bankroll;
-        const profitPercent = ((finalBankroll - trainingData.startBankroll) / trainingData.startBankroll) * 100;
+        const finalBankroll = pureStrategyMode ? trainingData.startBankroll : bankroll;
+        const profitPercent = pureStrategyMode ? 0 : ((finalBankroll - trainingData.startBankroll) / trainingData.startBankroll) * 100;
 
         const correct = decisions.filter(d => d.correct).length;
         const accuracy = decisions.length > 0 ? (correct / decisions.length) * 100 : 0;
@@ -1699,94 +1642,88 @@
         const avgBet = hands.length > 0 ? hands.reduce((s, h) => s + h.bet, 0) / hands.length : 0;
         const avgBetPercent = hands.length > 0 ? hands.reduce((s, h) => s + h.betPercent, 0) / hands.length : 0;
         const maxBetPercent = hands.length > 0 ? Math.max(...hands.map(h => h.betPercent)) : 0;
-        const maxBet = hands.length > 0 ? Math.max(...hands.map(h => h.bet)) : 0;
 
         const biggestWin = hands.length > 0 ? Math.max(...hands.map(h => h.profit)) : 0;
         const biggestLoss = hands.length > 0 ? Math.min(...hands.map(h => h.profit)) : 0;
 
         let chasingLosses = 0;
         for (let i = 1; i < hands.length; i++) {
-            if (hands[i-1].result === 'loss' && hands[i].bet > hands[i-1].bet * 1.5) {
-                chasingLosses++;
-            }
+            if (hands[i-1].result === 'loss' && hands[i].bet > hands[i-1].bet * 1.5) chasingLosses++;
         }
 
         const mistakes = decisions.filter(d => !d.correct);
 
-        let score = 50;
-        if (accuracy >= 90) score += 25;
-        else if (accuracy >= 80) score += 15;
-        else if (accuracy >= 70) score += 5;
-        else if (accuracy < 60) score -= 15;
+        // ============ امتیازدهی پیشرفته ============
+        const strategyScore = Math.max(0, Math.min(100, accuracy));
+        const bankrollScore = pureStrategyMode ? 100 : Math.max(0, Math.min(100,
+            50 + (profitPercent > 0 ? Math.min(30, profitPercent) : Math.max(-50, profitPercent)) +
+            (avgBetPercent >= 1 && avgBetPercent <= 2.5 ? 20 : avgBetPercent > 5 ? -20 : 0)
+        ));
+        const disciplineScore = Math.max(0, Math.min(100, 100 - (chasingLosses * 20) - (maxBetPercent > 15 ? 20 : 0)));
+        const consistencyScore = Math.max(0, Math.min(100, longestStreak * 5));
 
-        if (profitPercent > 10) score += 20;
-        else if (profitPercent > 0) score += 10;
-        else if (profitPercent > -20) score -= 5;
-        else if (profitPercent > -50) score -= 15;
-        else score -= 25;
+        const overallScore = Math.round((strategyScore * 0.4 + bankrollScore * 0.3 + disciplineScore * 0.2 + consistencyScore * 0.1));
 
-        if (avgBetPercent > 10) score -= 15;
-        else if (avgBetPercent > 5) score -= 5;
-        else if (avgBetPercent >= 1 && avgBetPercent <= 2.5) score += 10;
-
-        if (chasingLosses > 2) score -= 10;
-        score = Math.max(0, Math.min(100, score));
+        // ============ مدال‌ها ============
+        const medals = [
+            { icon: '🎓', name: 'استاد استراتژی', earned: strategyScore >= 90, tooltip: 'دقت ≥ ۹۰٪' },
+            { icon: '💰', name: 'مدیر سرمایه', earned: bankrollScore >= 80, tooltip: 'مدیریت عالی' },
+            { icon: '🛡️', name: 'منضبط', earned: disciplineScore >= 90, tooltip: 'بدون تعقیب ضرر' },
+            { icon: '🔥', name: 'سری داغ', earned: longestStreak >= 8, tooltip: '۸+ تصمیم صحیح پشت سرهم' },
+            { icon: '🏆', name: 'کامل', earned: accuracy === 100 && totalHands >= 10, tooltip: '۱۰۰٪ دقت' }
+        ];
 
         let verdict, verdictClass;
-        if (score >= 80) { verdict = '🏆 عملکرد عالی!'; verdictClass = 'excellent'; }
-        else if (score >= 60) { verdict = '👍 عملکرد خوب'; verdictClass = 'good'; }
-        else if (score >= 40) { verdict = '⚠️ نیاز به بهبود'; verdictClass = 'average'; }
+        if (overallScore >= 80) { verdict = '🏆 عملکرد عالی!'; verdictClass = 'excellent'; }
+        else if (overallScore >= 60) { verdict = '👍 عملکرد خوب'; verdictClass = 'good'; }
+        else if (overallScore >= 40) { verdict = '⚠️ نیاز به بهبود'; verdictClass = 'average'; }
         else { verdict = '❌ عملکرد ضعیف'; verdictClass = 'poor'; }
 
         let resultAnalysis = '';
-        if (totalProfit > 0) {
-            resultAnalysis = `شما با سود ${formatNumber(Math.abs(totalProfit))}$ (${profitPercent.toFixed(1)}%+) تمرین را به پایان رساندید. عالی!`;
+        if (pureStrategyMode) {
+            resultAnalysis = `حالت فقط استراتژی: ${correct} تصمیم صحیح از ${decisions.length} (${accuracy.toFixed(1)}٪ دقت)`;
+        } else if (totalProfit > 0) {
+            resultAnalysis = `سود ${formatNumber(Math.abs(totalProfit))}$ (${profitPercent.toFixed(1)}%+)`;
         } else if (totalProfit === 0) {
-            resultAnalysis = `شما با همان موجودی اولیه تمرین را به پایان رساندید.`;
+            resultAnalysis = `بدون سود/زیان`;
         } else {
-            resultAnalysis = `شما ${formatNumber(Math.abs(totalProfit))}$ از دست دادید (${Math.abs(profitPercent).toFixed(1)}% از موجودی اولیه).`;
+            resultAnalysis = `زیان ${formatNumber(Math.abs(totalProfit))}$ (${Math.abs(profitPercent).toFixed(1)}%)`;
         }
 
         const mistakeGroups = {};
         mistakes.forEach(m => {
-            const key = `${m.playerValue}${m.isSoft ? '(نرم)' : ''} در برابر ${m.dealerUpcard[0]}`;
+            const key = `${m.playerValue}${m.isSoft ? '(نرم)' : ''} vs ${m.dealerUpcard[0]}`;
             if (!mistakeGroups[key]) mistakeGroups[key] = { count: 0, example: m };
             mistakeGroups[key].count++;
         });
-
-        const topMistakes = Object.entries(mistakeGroups)
-            .sort((a, b) => b[1].count - a[1].count)
-            .slice(0, 5);
+        const topMistakes = Object.entries(mistakeGroups).sort((a, b) => b[1].count - a[1].count).slice(0, 5);
 
         const advices = [];
-        if (accuracy < 70) advices.push(`دقت استراتژی شما ${accuracy.toFixed(1)}% است. باید با جدول استراتژی پایه بیشتر تمرین کنید. هدف: ۸۵٪ به بالا.`);
-        else if (accuracy < 85) advices.push(`دقت استراتژی شما ${accuracy.toFixed(1)}% است. با کمی تمرین بیشتر، می‌توانید به ۹۰٪+ برسید.`);
-        else advices.push(`دقت استراتژی شما ${accuracy.toFixed(1)}% است. عالی! شما به استراتژی پایه مسلط هستید.`);
+        if (accuracy < 70) advices.push(`دقت ${accuracy.toFixed(1)}٪ — با جدول استراتژی پایه بیشتر تمرین کنید.`);
+        else if (accuracy < 85) advices.push(`دقت ${accuracy.toFixed(1)}٪ — نزدیک به تسلط کامل هستید.`);
+        else advices.push(`دقت ${accuracy.toFixed(1)}٪ — عالی!`);
 
-        if (avgBetPercent > 5) advices.push(`میانگین شرط شما ${avgBetPercent.toFixed(1)}% از موجودی است. استاندارد توصیه‌شده ۱ تا ۲.۵ درصد است. شرط‌های کمتری ببندید.`);
-        else if (avgBetPercent < 0.5) advices.push(`میانگین شرط شما ${avgBetPercent.toFixed(2)}% از موجودی است که بسیار محافظه‌کارانه است. می‌توانید کمی بیشتر ریسک کنید.`);
-        else advices.push(`میانگین شرط شما ${avgBetPercent.toFixed(1)}% از موجودی است. عالی! شما اصول مدیریت سرمایه را رعایت می‌کنید.`);
+        if (avgBetPercent > 5) advices.push(`میانگین شرط ${avgBetPercent.toFixed(1)}٪ — زیاد است. ۱ تا ۲.۵٪ توصیه می‌شود.`);
+        else if (avgBetPercent >= 1 && avgBetPercent <= 2.5) advices.push(`مدیریت سرمایه عالی!`);
 
-        if (maxBetPercent > 15) advices.push(`بزرگترین شرط شما ${maxBetPercent.toFixed(1)}% از موجودی بود. این مقدار بسیار پرخطر است و می‌تواند شما را ورشکست کند.`);
-        if (chasingLosses > 2) advices.push(`شما ${chasingLosses} بار پس از باخت، شرط را به‌طور قابل‌توجهی افزایش داده‌اید. این استراتژی خطرناک است.`);
+        if (chasingLosses > 2) advices.push(`${chasingLosses} بار تعقیب ضرر — خطرناک!`);
+        if (longestStreak >= 8) advices.push(`🔥 رکورد سری داغ: ${longestStreak} تصمیم صحیح پشت سرهم!`);
 
-        if (totalHands > 0) {
-            const winRate = (wins / totalHands) * 100;
-            advices.push(`نرخ برد شما ${winRate.toFixed(1)}% است. نرخ طبیعی در بلک‌جک حدود ۴۲-۴۵٪ است.`);
-        }
+        advices.push(`با موجودی حداقل ۵۰ برابر شرط پایه بازی کنید.`);
 
-        advices.push(`برای جلسه بعدی: با موجودی حداقل ۵۰ برابر شرط پایه بازی کنید تا واریانس را تحمل کنید.`);
+        const medalHtml = medals.map(m =>
+            `<div class="medal ${m.earned ? 'earned' : ''}" title="${m.tooltip}">
+                <div class="medal-icon">${m.icon}</div>
+                <div class="medal-name">${m.name}</div>
+            </div>`
+        ).join('');
 
-        let mistakesHtml = '';
-        if (topMistakes.length > 0) {
-            mistakesHtml = topMistakes.map(([key, data]) => {
+        let mistakesHtml = topMistakes.length > 0
+            ? topMistakes.map(([key, data]) => {
                 const m = data.example;
-                return `<li>❌ <b>${key}</b> (${data.count} بار)<br>
-                    <span style="color:#94a3b8">شما: ${actionName(m.actual)} | صحیح: ${actionName(m.optimal)}</span></li>`;
-            }).join('');
-        } else {
-            mistakesHtml = '<li style="border-right-color:#22c55e">✅ هیچ اشتباهی ثبت نشد! عالی!</li>';
-        }
+                return `<li>❌ <b>${key}</b> (${data.count} بار)<br><span style="color:#94a3b8">شما: ${actionName(m.actual)} | صحیح: ${actionName(m.optimal)}</span></li>`;
+            }).join('')
+            : '<li style="border-right-color:#22c55e">✅ هیچ اشتباهی!</li>';
 
         const adviceHtml = advices.map(a => `<li>💡 ${a}</li>`).join('');
 
@@ -1798,53 +1735,70 @@
             return `<div class="hand-history-item ${resultClass}">
                 <div class="row"><span>دست ${h.handNumber} ${resultIcon}</span><span>${profitStr}</span></div>
                 <div class="row"><span class="label">کارت‌ها:</span><span>${h.playerCards.join(' ')} | دیلر: ${h.dealerUpcard}</span></div>
-                <div class="row"><span class="label">شرط:</span><span>$${formatNumber(h.bet)} (${h.betPercent.toFixed(1)}%)</span></div>
             </div>`;
         }).join('');
 
         const reportHtml = `
             <div class="report-header">
-                <div class="report-title">📊 گزارش عملکرد تمرینی</div>
+                <div class="report-title">📊 گزارش تمرین${pureStrategyMode ? ' (فقط استراتژی)' : ''}</div>
                 <button class="report-close" onclick="closeReport()">✕</button>
             </div>
 
-            <div class="verdict ${verdictClass}">${verdict} — امتیاز: ${score}/100</div>
+            <div class="verdict ${verdictClass}">${verdict} — امتیاز کل: ${overallScore}/100</div>
+
+            <div class="medals-row">${medalHtml}</div>
+
+            <div class="report-section">
+                <div class="report-section-title">🎯 امتیازهای تفکیکی</div>
+                <div class="report-grid">
+                    <div class="report-item"><span class="label">دقت استراتژی:</span><span class="value ${strategyScore >= 80 ? 'good' : strategyScore >= 60 ? 'warn' : 'bad'}">${strategyScore.toFixed(0)}/100</span></div>
+                    <div class="report-item"><span class="label">مدیریت سرمایه:</span><span class="value ${bankrollScore >= 70 ? 'good' : bankrollScore >= 40 ? 'warn' : 'bad'}">${bankrollScore.toFixed(0)}/100</span></div>
+                    <div class="report-item"><span class="label">انضباط:</span><span class="value ${disciplineScore >= 80 ? 'good' : disciplineScore >= 60 ? 'warn' : 'bad'}">${disciplineScore.toFixed(0)}/100</span></div>
+                    <div class="report-item"><span class="label">پیوستگی:</span><span class="value ${consistencyScore >= 60 ? 'good' : 'warn'}">${consistencyScore.toFixed(0)}/100</span></div>
+                </div>
+            </div>
 
             <div class="report-section">
                 <div class="report-section-title">📈 خلاصه عملکرد</div>
                 <div class="report-grid">
                     <div class="report-item"><span class="label">تعداد دست‌ها:</span><span class="value">${totalHands}</span></div>
-                    <div class="report-item"><span class="label">موجودی نهایی:</span><span class="value ${finalBankroll >= trainingData.startBankroll ? 'good' : 'bad'}">$${formatNumber(Math.max(0, finalBankroll))}</span></div>
+                    <div class="report-item"><span class="label">موجودی نهایی:</span><span class="value ${finalBankroll >= trainingData.startBankroll ? 'good' : 'bad'}">${pureStrategyMode ? '♾️' : '$' + formatNumber(Math.max(0, finalBankroll))}</span></div>
                     <div class="report-item"><span class="label">سود/زیان کل:</span><span class="value ${totalProfit >= 0 ? 'good' : 'bad'}">${totalProfit >= 0 ? '+' : ''}$${formatNumber(totalProfit)}</span></div>
-                    <div class="report-item"><span class="label">درصد تغییر:</span><span class="value ${profitPercent >= 0 ? 'good' : 'bad'}">${profitPercent.toFixed(1)}%</span></div>
-                    <div class="report-item"><span class="label">برد / باخت / مساوی:</span><span class="value">${wins} / ${losses} / ${pushes}</span></div>
+                    <div class="report-item"><span class="label">برد/باخت/مساوی:</span><span class="value">${wins}/${losses}/${pushes}</span></div>
                     <div class="report-item"><span class="label">بزرگ‌ترین برد:</span><span class="value good">+$${formatNumber(biggestWin)}</span></div>
                     <div class="report-item"><span class="label">بزرگ‌ترین باخت:</span><span class="value bad">-$${formatNumber(Math.abs(biggestLoss))}</span></div>
-                    <div class="report-item"><span class="label">نرخ برد:</span><span class="value">${totalHands > 0 ? ((wins/totalHands)*100).toFixed(1) : 0}%</span></div>
                 </div>
                 <div style="margin-top:8px;font-size:0.72rem;color:#cbd5e1;text-align:center;">${resultAnalysis}</div>
+            </div>
+
+            <div class="report-section">
+                <div class="report-section-title">📊 نمودار موجودی در طول جلسه</div>
+                <div class="chart-container">
+                    <canvas id="bankrollChart"></canvas>
+                </div>
             </div>
 
             <div class="report-section">
                 <div class="report-section-title">🎯 دقت استراتژی پایه</div>
                 <div class="report-grid">
                     <div class="report-item"><span class="label">تعداد تصمیم‌ها:</span><span class="value">${decisions.length}</span></div>
-                    <div class="report-item"><span class="label">تصمیم‌های صحیح:</span><span class="value good">${correct}</span></div>
-                    <div class="report-item"><span class="label">تصمیم‌های نادرست:</span><span class="value bad">${mistakes.length}</span></div>
+                    <div class="report-item"><span class="label">صحیح:</span><span class="value good">${correct}</span></div>
+                    <div class="report-item"><span class="label">نادرست:</span><span class="value bad">${mistakes.length}</span></div>
                     <div class="report-item"><span class="label">دقت:</span><span class="value ${accuracy >= 85 ? 'good' : accuracy >= 70 ? 'warn' : 'bad'}">${accuracy.toFixed(1)}%</span></div>
+                    <div class="report-item"><span class="label">طولانی‌ترین سری:</span><span class="value good">${longestStreak}</span></div>
                 </div>
             </div>
 
+            ${!pureStrategyMode ? `
             <div class="report-section">
                 <div class="report-section-title">💰 مدیریت سرمایه</div>
                 <div class="report-grid">
                     <div class="report-item"><span class="label">میانگین شرط:</span><span class="value">$${formatNumber(Math.round(avgBet))}</span></div>
-                    <div class="report-item"><span class="label">میانگین % شرط:</span><span class="value ${avgBetPercent >= 1 && avgBetPercent <= 2.5 ? 'good' : avgBetPercent > 5 ? 'bad' : 'warn'}">${avgBetPercent.toFixed(2)}%</span></div>
-                    <div class="report-item"><span class="label">بزرگ‌ترین شرط:</span><span class="value">$${formatNumber(maxBet)}</span></div>
-                    <div class="report-item"><span class="label">بزرگ‌ترین % شرط:</span><span class="value ${maxBetPercent > 15 ? 'bad' : maxBetPercent > 5 ? 'warn' : 'good'}">${maxBetPercent.toFixed(2)}%</span></div>
+                    <div class="report-item"><span class="label">میانگین %:</span><span class="value ${avgBetPercent >= 1 && avgBetPercent <= 2.5 ? 'good' : avgBetPercent > 5 ? 'bad' : 'warn'}">${avgBetPercent.toFixed(2)}%</span></div>
+                    <div class="report-item"><span class="label">بزرگ‌ترین % شرط:</span><span class="value ${maxBetPercent > 15 ? 'bad' : 'good'}">${maxBetPercent.toFixed(2)}%</span></div>
                     <div class="report-item"><span class="label">تعقیب ضرر:</span><span class="value ${chasingLosses > 2 ? 'bad' : 'good'}">${chasingLosses} بار</span></div>
                 </div>
-            </div>
+            </div>` : ''}
 
             <div class="report-section">
                 <div class="report-section-title">❌ اشتباهات استراتژی</div>
@@ -1852,7 +1806,7 @@
             </div>
 
             <div class="report-section">
-                <div class="report-section-title">💡 پیشنهادات برای تمرین بعدی</div>
+                <div class="report-section-title">💡 پیشنهادات</div>
                 <ul class="advice-list">${adviceHtml}</ul>
             </div>
 
@@ -1861,11 +1815,128 @@
                 ${handsHtml}
             </div>
 
+            <button class="btn-export" onclick="exportSession()">📥 دانلود گزارش JSON</button>
             <button class="btn-restart" onclick="closeReport()">بستن گزارش</button>
         `;
 
         document.getElementById('reportContent').innerHTML = reportHtml;
         document.getElementById('reportModal').classList.add('show');
+
+        setTimeout(() => drawBankrollChart(), 100);
+    }
+
+    // ==================== CHART ====================
+    function drawBankrollChart() {
+        const canvas = document.getElementById('bankrollChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        const data = trainingData.bankrollHistory;
+        if (data.length < 2) {
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '12px Tahoma';
+            ctx.textAlign = 'center';
+            ctx.fillText('داده کافی برای نمودار وجود ندارد', rect.width / 2, rect.height / 2);
+            return;
+        }
+
+        const w = rect.width;
+        const h = rect.height;
+        const padding = 20;
+        const chartW = w - padding * 2;
+        const chartH = h - padding * 2;
+
+        const min = Math.min(...data);
+        const max = Math.max(...data);
+        const range = max - min || 1;
+
+        // Grid
+        ctx.strokeStyle = 'rgba(197,155,39,0.15)';
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= 4; i++) {
+            const y = padding + (chartH / 4) * i;
+            ctx.beginPath();
+            ctx.moveTo(padding, y);
+            ctx.lineTo(w - padding, y);
+            ctx.stroke();
+        }
+
+        // Line
+        ctx.strokeStyle = '#22c55e';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        data.forEach((v, i) => {
+            const x = padding + (chartW / (data.length - 1)) * i;
+            const y = padding + chartH - ((v - min) / range) * chartH;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Area fill
+        ctx.lineTo(padding + chartW, padding + chartH);
+        ctx.lineTo(padding, padding + chartH);
+        ctx.closePath();
+        const grad = ctx.createLinearGradient(0, padding, 0, padding + chartH);
+        grad.addColorStop(0, 'rgba(34,197,94,0.3)');
+        grad.addColorStop(1, 'rgba(34,197,94,0)');
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Points
+        ctx.fillStyle = '#4ade80';
+        data.forEach((v, i) => {
+            const x = padding + (chartW / (data.length - 1)) * i;
+            const y = padding + chartH - ((v - min) / range) * chartH;
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Start line (original bankroll)
+        const startY = padding + chartH - ((trainingData.startBankroll - min) / range) * chartH;
+        ctx.strokeStyle = 'rgba(251,191,36,0.6)';
+        ctx.setLineDash([5, 3]);
+        ctx.beginPath();
+        ctx.moveTo(padding, startY);
+        ctx.lineTo(w - padding, startY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    // ==================== EXPORT ====================
+    function exportSession() {
+        const session = {
+            timestamp: new Date().toISOString(),
+            startBankroll: trainingData.startBankroll,
+            finalBankroll: bankroll,
+            totalHands: trainingData.hands.length,
+            totalDecisions: trainingData.decisions.length,
+            accuracy: trainingData.decisions.length > 0
+                ? (trainingData.decisions.filter(d => d.correct).length / trainingData.decisions.length * 100).toFixed(1) + '%'
+                : '0%',
+            longestStreak: longestStreak,
+            drillMode: drillMode,
+            pureStrategyMode: pureStrategyMode,
+            hands: trainingData.hands,
+            decisions: trainingData.decisions
+        };
+
+        const blob = new Blob([JSON.stringify(session, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `blackjack-session-${Date.now()}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showStatus('گزارش JSON دانلود شد. 📥');
     }
 
     function closeReport() {
