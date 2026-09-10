@@ -186,7 +186,25 @@
         .card.red { color: var(--card-red); }
         .card.black { color: var(--card-black); }
 
-        /* Corner index */
+        /* کارت با تصویر */
+        .card.card-img {
+            padding: 0;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card.card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Corner index (برای حالت SVG) */
         .corner-index {
             position: absolute;
             display: flex;
@@ -205,7 +223,6 @@
         }
         .corner-index svg { width: clamp(6px, 1vw, 9px); height: clamp(6px, 1vw, 9px); }
 
-        /* SVG suit icons */
         .suit-line {
             fill: none;
             stroke: currentColor;
@@ -214,7 +231,6 @@
             stroke-linejoin: round;
         }
 
-        /* Center content */
         .center-content {
             position: absolute;
             top: 50%;
@@ -236,8 +252,6 @@
             color: currentColor;
             line-height: 1;
         }
-
-        /* Face card decorations */
         .face-decor {
             position: absolute;
             width: clamp(9px, 1.5vw, 13px);
@@ -247,7 +261,7 @@
         .face-decor.top-right { top: clamp(5px, 0.9vw, 8px); right: clamp(5px, 0.9vw, 8px); }
         .face-decor.bottom-left-inner { bottom: clamp(5px, 0.9vw, 8px); left: clamp(5px, 0.9vw, 8px); }
 
-        /* Card back */
+        /* Card back (حالت SVG fallback) */
         .card.card-back {
             background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -407,7 +421,7 @@
 </head>
 <body>
 
-    <!-- ==================== LUXURY DARK BLUE BACKGROUND ==================== -->
+    <!-- ==================== BACKGROUND ==================== -->
     <div class="bg-container">
         <div class="wave wave-1"></div>
         <div class="wave wave-2"></div>
@@ -479,7 +493,7 @@
         </footer>
     </div>
 
-    <!-- ==================== فایل کارت‌ها (Base64 و رندر) ==================== -->
+    <!-- ==================== فایل کارت‌ها (Base64) ==================== -->
     <script src="cards_base64.js"></script>
 
     <!-- ==================== منطق بازی ==================== -->
@@ -507,6 +521,93 @@
         const BLACKJACK = 21;
         const DEALER_STAND_THRESHOLD = 17;
 
+        // ==================== MAP & IMAGE CHECK ====================
+        const suitToKey = { '♠': 'spades', '♥': 'hearts', '♦': 'diamonds', '♣': 'clubs' };
+
+        function hasCardImages() {
+            return typeof cardSrcs !== 'undefined' && cardSrcs !== null && Object.keys(cardSrcs).length > 0;
+        }
+        function getCardImageSrc(card) {
+            if (!hasCardImages()) return null;
+            const key = suitToKey[card.suit] + '_' + card.val;
+            const src = cardSrcs[key];
+            return (src && typeof src === 'string' && src.length > 10) ? src : null;
+        }
+        function getCardBackImageSrc() {
+            if (!hasCardImages()) return null;
+            const src = cardSrcs['back'];
+            return (src && typeof src === 'string' && src.length > 10) ? src : null;
+        }
+
+        // ==================== SVG FALLBACK ====================
+        const cornerSuitPaths = {
+            '♥': `<path class="suit-line" d="M 15 26 C 5 18 2 10 9 5 C 14 2 15 6 15 8 C 15 6 16 2 21 5 C 28 10 25 18 15 26 Z"/>`,
+            '♦': `<polygon class="suit-line" points="15,3 27,15 15,27 3,15"/>`,
+            '♣': `<circle class="suit-line" cx="15" cy="9" r="5"/><circle class="suit-line" cx="8" cy="18" r="5"/><circle class="suit-line" cx="22" cy="18" r="5"/><polygon class="suit-line" points="15,14 10,27 20,27"/>`,
+            '♠': `<polygon class="suit-line" points="15,3 7,16 23,16"/><circle class="suit-line" cx="8" cy="20" r="5"/><circle class="suit-line" cx="22" cy="20" r="5"/><circle class="suit-line" cx="15" cy="25" r="4"/>`
+        };
+        const centerSuitPaths = {
+            '♥': `<path class="suit-line" stroke-width="2.5" d="M 50 88 C 15 60 4 33 22 15 C 34 3 46 14 50 20 C 54 14 66 3 78 15 C 96 33 85 60 50 88 Z"/>`,
+            '♦': `<polygon class="suit-line" stroke-width="2.5" points="50,8 88,50 50,92 12,50"/><polygon class="suit-line" stroke-width="1.5" points="50,26 72,50 50,74 28,50"/>`,
+            '♣': `<circle class="suit-line" stroke-width="2.2" cx="50" cy="30" r="22"/><circle class="suit-line" stroke-width="2.2" cx="24" cy="58" r="22"/><circle class="suit-line" stroke-width="2.2" cx="76" cy="58" r="22"/><polygon class="suit-line" stroke-width="2.2" points="50,46 24,92 76,92"/>`,
+            '♠': `<polygon class="suit-line" stroke-width="2.2" points="50,8 18,52 82,52"/><circle class="suit-line" stroke-width="2.2" cx="24" cy="62" r="22"/><circle class="suit-line" stroke-width="2.2" cx="76" cy="62" r="22"/><circle class="suit-line" stroke-width="2.2" cx="50" cy="78" r="22"/>`
+        };
+        function cornerSuitSVG(suit) { return `<svg viewBox="0 0 30 30">${cornerSuitPaths[suit] || ''}</svg>`; }
+        function centerSuitSVG(suit, large = false) { return `<svg class="center-suit${large ? ' large' : ''}" viewBox="0 0 100 100">${centerSuitPaths[suit] || ''}</svg>`; }
+
+        function renderCardSVG(card) {
+            const isRed = card.suit === '♥' || card.suit === '♦';
+            const colorClass = isRed ? 'red' : 'black';
+            const isFaceCard = ['J', 'Q', 'K'].includes(card.val);
+            const isAce = card.val === 'A';
+
+            let centerContent = '';
+            if (isAce) {
+                centerContent = centerSuitSVG(card.suit, true);
+            } else if (isFaceCard) {
+                centerContent = `
+                    <div class="center-letter">${card.val}</div>
+                    <svg class="face-decor top-right" viewBox="0 0 30 30">${cornerSuitPaths[card.suit]}</svg>
+                    <svg class="face-decor bottom-left-inner" viewBox="0 0 30 30">${cornerSuitPaths[card.suit]}</svg>
+                `;
+            } else {
+                centerContent = centerSuitSVG(card.suit, false);
+            }
+
+            return `<div class="card ${colorClass}">
+                <div class="corner-index top-left">
+                    <span class="rank">${card.val}</span>
+                    ${cornerSuitSVG(card.suit)}
+                </div>
+                <div class="center-content">${centerContent}</div>
+                <div class="corner-index bottom-right">
+                    <span class="rank">${card.val}</span>
+                    ${cornerSuitSVG(card.suit)}
+                </div>
+            </div>`;
+        }
+        function renderCardBackSVG() {
+            return `<div class="card card-back"><div class="back-emblem">
+                <svg viewBox="0 0 30 30">${cornerSuitPaths['♠']}</svg>
+            </div></div>`;
+        }
+
+        // ==================== RENDER (تصویر یا SVG) ====================
+        function getCardHTML(card) {
+            const imgSrc = getCardImageSrc(card);
+            if (imgSrc) {
+                return `<div class="card card-img"><img src="${imgSrc}" alt="${card.val}${card.suit}" draggable="false"></div>`;
+            }
+            return renderCardSVG(card);
+        }
+        function getCardBackHTML() {
+            const imgSrc = getCardBackImageSrc();
+            if (imgSrc) {
+                return `<div class="card card-img"><img src="${imgSrc}" alt="back" draggable="false"></div>`;
+            }
+            return renderCardBackSVG();
+        }
+
         // ==================== UTILITY ====================
         function cardValue(card) {
             const val = card.val;
@@ -514,7 +615,6 @@
             if (['K','Q','J','10'].includes(val)) return 10;
             return parseInt(val);
         }
-
         function isSoft(hand) {
             let sum = 0, aces = 0;
             for (let card of hand) {
@@ -523,7 +623,6 @@
             }
             return aces > 0 && sum <= 21;
         }
-
         function calculateHand(hand) {
             let sum = 0, aces = 0;
             for (let card of hand) {
@@ -533,24 +632,17 @@
             while (sum > BLACKJACK && aces > 0) { sum -= 10; aces--; }
             return sum;
         }
-
         function getScoreDisplay(hand) {
             if (isSoft(hand)) return `Soft ${calculateHand(hand)}`;
             return calculateHand(hand).toString();
         }
-
         function formatNumber(num) {
             const parts = num.toString().split('.');
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             return parts.join('.');
         }
-
-        function isBlackjack(hand) {
-            return calculateHand(hand) === BLACKJACK && hand.length === 2;
-        }
-        function allHandsBust() {
-            return playerHands.every(hand => calculateHand(hand) > BLACKJACK);
-        }
+        function isBlackjack(hand) { return calculateHand(hand) === BLACKJACK && hand.length === 2; }
+        function allHandsBust() { return playerHands.every(hand => calculateHand(hand) > BLACKJACK); }
 
         // ==================== LOCAL STORAGE ====================
         function loadBankroll() {
@@ -616,7 +708,7 @@
             if (isLoss) el.classList.add('loss');
         }
 
-        // ==================== SUGGESTION SYSTEM ====================
+        // ==================== SUGGESTION ====================
         function toggleSuggestion() {
             const box = document.getElementById('suggestionButtons');
             box.style.display = box.style.display === 'none' ? 'flex' : 'none';
@@ -754,46 +846,7 @@
             }
         }
 
-        // ==================== RENDERING (با استفاده از cards_base64.js) ====================
-        // تابع اصلی رندر کارت از فایل خارجی می‌آید (renderCardHTML).
-        // اگر فایل خارجی موجود نبود، از تابع داخلی fallback استفاده می‌شود.
-        function renderCardInternal(card) {
-            const isRed = card.suit === '♥' || card.suit === '♦';
-            const colorClass = isRed ? 'red' : 'black';
-            return `<div class="card ${colorClass}">
-                <div class="corner-index top-left">
-                    <span class="rank">${card.val}</span>
-                </div>
-                <div class="center-content">
-                    <div class="center-letter">${card.val}</div>
-                </div>
-                <div class="corner-index bottom-right">
-                    <span class="rank">${card.val}</span>
-                </div>
-            </div>`;
-        }
-
-        function getCardHTML(card) {
-            // اگر تابع renderCardHTML در cards_base64.js تعریف شده باشد، از آن استفاده می‌کنیم
-            if (typeof window.renderCardHTML === 'function') {
-                return window.renderCardHTML(card);
-            }
-            // در غیر این صورت از رندر داخلی استفاده می‌کنیم
-            return renderCardInternal(card);
-        }
-
-        function getCardBackHTML() {
-            if (typeof window.renderCardBackHTML === 'function') {
-                return window.renderCardBackHTML();
-            }
-            return `<div class="card card-back"><div class="back-emblem">
-                <svg viewBox="0 0 30 30"><polygon class="suit-line" points="15,3 7,16 23,16"/>
-                <circle class="suit-line" cx="8" cy="20" r="5"/>
-                <circle class="suit-line" cx="22" cy="20" r="5"/>
-                <circle class="suit-line" cx="15" cy="25" r="4"/></svg>
-            </div></div>`;
-        }
-
+        // ==================== RENDERING ====================
         function renderDealerCards(hideSecondCard = false) {
             dealerCardHidden = hideSecondCard;
             const container = document.getElementById('dealerCards');
@@ -804,19 +857,15 @@
                 container.classList.remove('blackjack-highlight');
             }
             dealerHand.forEach((card, index) => {
+                const wrapper = document.createElement('div');
                 if (hideSecondCard && index === 1) {
-                    const wrapper = document.createElement('div');
                     wrapper.innerHTML = getCardBackHTML();
-                    const cardEl = wrapper.firstElementChild;
-                    cardEl.style.animationDelay = `${index * 0.12}s`;
-                    container.appendChild(cardEl);
                 } else {
-                    const wrapper = document.createElement('div');
                     wrapper.innerHTML = getCardHTML(card);
-                    const cardEl = wrapper.firstElementChild;
-                    cardEl.style.animationDelay = `${index * 0.12}s`;
-                    container.appendChild(cardEl);
                 }
+                const cardEl = wrapper.firstElementChild;
+                cardEl.style.animationDelay = `${index * 0.12}s`;
+                container.appendChild(cardEl);
             });
             updateDealerScore();
         }
@@ -1126,7 +1175,21 @@
         // ==================== INIT ====================
         loadBankroll();
         updateUI();
-        showStatus('خوش آمدید! برای شروع شرط‌بندی کنید. 🎰');
+
+        // بررسی وضعیت تصاویر
+        if (hasCardImages()) {
+            const imgCount = Object.keys(cardSrcs).length;
+            showStatus(`خوش آمدید! (${imgCount} تصویر کارت لود شد) برای شروع شرط‌بندی کنید.`);
+        } else {
+            showStatus('خوش آمدید! (حالت پیش‌فرض SVG) برای شروع شرط‌بندی کنید.');
+        }
+
+        // لاگ برای دیباگ
+        console.log('cards_base64.js وضعیت:', {
+            hasImages: hasCardImages(),
+            keysCount: hasCardImages() ? Object.keys(cardSrcs).length : 0,
+            sampleKeys: hasCardImages() ? Object.keys(cardSrcs).slice(0, 5) : []
+        });
     </script>
 </body>
 </html>
