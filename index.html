@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* ==================== RESET & VARIABLES ==================== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         :root {
             --gold: #c59b27;
@@ -35,169 +34,83 @@
             overflow: hidden;
         }
 
-        /* ==================== DEBUG BAR ==================== */
-        #debugBar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.92);
-            color: #0f0;
-            padding: 6px 10px;
-            font-size: 11px;
-            z-index: 99999;
-            font-family: 'Courier New', monospace;
-            direction: ltr;
-            text-align: left;
-            border-bottom: 2px solid #444;
-            line-height: 1.4;
-            max-height: 120px;
-            overflow-y: auto;
-            word-break: break-all;
-        }
-        #debugBar.ok { background: rgba(0, 60, 0, 0.95); color: #90ee90; border-bottom-color: #0a0; }
-        #debugBar.err { background: rgba(60, 0, 0, 0.95); color: #ff8080; border-bottom-color: #a00; }
-        #debugBar.warn { background: rgba(60, 50, 0, 0.95); color: #ffdd55; border-bottom-color: #aa0; }
-        #debugBar.loading { background: rgba(0, 30, 60, 0.95); color: #88ccff; border-bottom-color: #08a; }
-
-        /* ==================== BACKGROUND ==================== */
         .bg-container {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
+            position: fixed; inset: 0; width: 100vw; height: 100vh;
             background: radial-gradient(circle at 85% 15%, #182a54 0%, #090e18 55%, #020408 100%);
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
+            overflow: hidden; z-index: 0; pointer-events: none;
         }
         .wave {
-            position: absolute;
-            width: 180%;
-            height: 180%;
-            border-radius: 50%;
+            position: absolute; width: 180%; height: 180%; border-radius: 50%;
             background: radial-gradient(ellipse at 50% 20%, #1e3768 0%, #0d1930 50%, #040810 85%);
         }
         .wave-1 { bottom: -95%; left: -65%; transform: rotate(-26deg); border-top: 2.5px solid #d4af37; box-shadow: 0 -3px 12px rgba(212,175,55,0.4), 0 -20px 40px rgba(0,0,0,0.9); }
         .wave-2 { bottom: -72%; left: -48%; transform: rotate(-26deg); border-top: 2.5px solid #f3cf7a; box-shadow: 0 -3px 15px rgba(243,207,122,0.6), 0 -25px 50px rgba(0,0,0,0.95); }
         .wave-3 { bottom: -50%; left: -32%; transform: rotate(-26deg); border-top: 3px solid #ffe89c; box-shadow: 0 -4px 20px rgba(255,232,156,0.8), 0 -30px 60px rgba(0,0,0,1); }
 
-        /* ==================== GAME WRAPPER ==================== */
         .game-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-            padding: 6px;
-            padding-top: 40px;
-            gap: 6px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            flex: 1; display: flex; flex-direction: column; min-height: 0;
+            padding: 6px; gap: 6px; position: relative; z-index: 1; overflow: hidden;
         }
 
-        /* ==================== HEADER ==================== */
         .game-header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px;
             background: rgba(4, 8, 16, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 6px 12px;
-            flex-shrink: 0;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--gold); border-radius: var(--radius);
+            padding: 6px 12px; flex-shrink: 0;
             box-shadow: 0 6px 18px rgba(0,0,0,0.7), inset 0 0 20px rgba(30, 55, 104, 0.3);
         }
         .game-title {
-            font-size: clamp(16px, 3vw, 22px);
-            font-weight: 800;
+            font-size: clamp(16px, 3vw, 22px); font-weight: 800;
             background: linear-gradient(135deg, #f3e0aa, #c59b27, #ffe89c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-            white-space: nowrap;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5); white-space: nowrap;
         }
         .account-row { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; justify-content: center; }
         .info-box {
-            background: rgba(30, 55, 104, 0.35);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(197,155,39,0.6);
-            border-radius: var(--radius-sm);
-            padding: 4px 12px;
-            text-align: center;
-            min-width: 70px;
+            background: rgba(30, 55, 104, 0.35); backdrop-filter: blur(6px);
+            border: 1px solid rgba(197,155,39,0.6); border-radius: var(--radius-sm);
+            padding: 4px 12px; text-align: center; min-width: 70px;
         }
         .info-label { font-size: 0.6rem; color: var(--gold-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .info-value { font-size: 0.95rem; font-weight: 800; color: #fff; text-shadow: var(--text-shadow); }
 
-        /* ==================== TABLE ==================== */
         .game-table {
-            flex: 1;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            flex: 1; min-height: 0;
+            display: flex; flex-direction: column; justify-content: space-between;
             background: radial-gradient(ellipse at center, rgba(13, 25, 48, 0.85) 0%, rgba(4, 8, 16, 0.95) 100%);
-            border: 3px solid var(--gold);
-            border-radius: 20px;
-            padding: 8px 6px;
+            border: 3px solid var(--gold); border-radius: 20px; padding: 8px 6px;
             box-shadow: 0 16px 32px rgba(0,0,0,0.8), inset 0 0 50px rgba(30, 55, 104, 0.4);
             overflow: hidden;
         }
         .dealer-area, .player-area { display: flex; flex-direction: column; align-items: center; width: 100%; }
         .dealer-header, .player-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 480px;
-            padding: 0 8px;
-            margin-bottom: 2px;
+            display: flex; justify-content: space-between; align-items: center;
+            width: 100%; max-width: 480px; padding: 0 8px; margin-bottom: 2px;
         }
         .section-label { font-size: 0.85rem; font-weight: 700; color: var(--gold-light); text-shadow: var(--text-shadow); }
         .score-box {
             background: linear-gradient(145deg, #0d1930, #040810);
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            padding: 2px 10px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: var(--gold-light);
-            min-width: 50px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-            margin-top: 4px;
-            display: inline-block;
+            border: 2px solid var(--gold); border-radius: 8px;
+            padding: 2px 10px; font-size: 0.8rem; font-weight: 800;
+            color: var(--gold-light); min-width: 50px; text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6); margin-top: 4px; display: inline-block;
         }
         .cards-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin: 4px 0;
-            perspective: 1200px;
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+            gap: 6px; margin: 4px 0; perspective: 1200px;
         }
 
-        /* ==================== CARDS ==================== */
         .card {
-            position: relative;
-            background: #ffffff;
+            position: relative; background: #ffffff;
             border-radius: clamp(6px, 1vw, 10px);
             border: 1px solid rgba(0, 0, 0, 0.05);
             box-shadow: -3px 6px 14px rgba(0, 0, 0, 0.3), -1px 2px 5px rgba(0, 0, 0, 0.15);
-            width: clamp(52px, 8vw, 72px);
-            height: clamp(78px, 12vw, 104px);
-            flex-shrink: 0;
-            color: var(--card-black);
+            width: clamp(52px, 8vw, 72px); height: clamp(78px, 12vw, 104px);
+            flex-shrink: 0; color: var(--card-black);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: dealCard 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
-            transform-style: preserve-3d;
-            overflow: hidden;
+            transform-style: preserve-3d; overflow: hidden;
         }
         @keyframes dealCard {
             0% { transform: translateY(-35px) rotateX(15deg) scale(0.95); opacity: 0; }
@@ -207,32 +120,18 @@
         .card.red { color: var(--card-red); }
         .card.black { color: var(--card-black); }
 
-        /* کارت با تصویر */
         .card.card-img {
-            padding: 0;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0; background: #fff;
+            display: flex; align-items: center; justify-content: center;
         }
         .card.card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            pointer-events: none;
-            user-select: none;
-            -webkit-user-drag: none;
+            width: 100%; height: 100%; object-fit: contain;
+            display: block; pointer-events: none; user-select: none; -webkit-user-drag: none;
         }
 
-        /* Corner index (fallback SVG) */
         .corner-index {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            line-height: 0.9;
-            font-family: 'Oswald', sans-serif;
+            position: absolute; display: flex; flex-direction: column; align-items: center;
+            line-height: 0.9; font-family: 'Oswald', sans-serif;
         }
         .corner-index.top-left { top: clamp(4px, 0.7vw, 6px); left: clamp(4px, 0.7vw, 6px); }
         .corner-index.bottom-right { bottom: clamp(4px, 0.7vw, 6px); right: clamp(4px, 0.7vw, 6px); transform: rotate(180deg); }
@@ -242,12 +141,9 @@
         .suit-line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
         .center-content {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             display: flex; justify-content: center; align-items: center;
-            width: 100%; height: 100%;
-            pointer-events: none;
+            width: 100%; height: 100%; pointer-events: none;
         }
         .center-suit { width: clamp(20px, 3vw, 30px); height: clamp(20px, 3vw, 30px); }
         .center-suit.large { width: clamp(28px, 4.2vw, 42px); height: clamp(28px, 4.2vw, 42px); }
@@ -255,53 +151,33 @@
             font-family: 'Oswald', sans-serif; font-weight: 500;
             font-size: clamp(20px, 3.2vw, 30px); color: currentColor; line-height: 1;
         }
-        .face-decor {
-            position: absolute;
-            width: clamp(9px, 1.5vw, 13px);
-            height: clamp(9px, 1.5vw, 13px);
-            color: currentColor;
-        }
+        .face-decor { position: absolute; width: clamp(9px, 1.5vw, 13px); height: clamp(9px, 1.5vw, 13px); color: currentColor; }
         .face-decor.top-right { top: clamp(5px, 0.9vw, 8px); right: clamp(5px, 0.9vw, 8px); }
         .face-decor.bottom-left-inner { bottom: clamp(5px, 0.9vw, 8px); left: clamp(5px, 0.9vw, 8px); }
 
-        /* Card back (SVG fallback) */
         .card.card-back {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex; align-items: center; justify-content: center;
-            padding: 4px;
+            background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex; align-items: center; justify-content: center; padding: 4px;
         }
         .card.card-back::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
+            content: ''; position: absolute; inset: 4px;
             background: linear-gradient(145deg, #0f1e3d 0%, #050a18 100%);
-            border: 1.5px solid var(--gold);
-            border-radius: 6px;
+            border: 1.5px solid var(--gold); border-radius: 6px;
         }
         .card.card-back::after {
-            content: '';
-            position: absolute;
-            inset: 9px;
-            border: 1px solid rgba(197, 155, 39, 0.5);
-            border-radius: 4px;
+            content: ''; position: absolute; inset: 9px;
+            border: 1px solid rgba(197, 155, 39, 0.5); border-radius: 4px;
         }
         .card.card-back .back-emblem {
-            position: relative; z-index: 1;
-            width: 40%; height: 40%;
-            color: var(--gold-light);
+            position: relative; z-index: 1; width: 40%; height: 40%; color: var(--gold-light);
         }
         .card.card-back .back-emblem svg {
-            width: 100%; height: 100%;
-            fill: none; stroke: currentColor;
+            width: 100%; height: 100%; fill: none; stroke: currentColor;
             stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
         }
 
-        /* Active hand */
         .active-hand {
-            outline: 2px solid #fbbf24;
-            outline-offset: 2px;
-            border-radius: 10px;
+            outline: 2px solid #fbbf24; outline-offset: 2px; border-radius: 10px;
             animation: activeGlow 1.2s ease-in-out infinite alternate;
         }
         @keyframes activeGlow {
@@ -314,95 +190,62 @@
         }
         .hand-label { font-size: 0.65rem; color: var(--gold-light); font-weight: 700; margin-top: 2px; }
 
-        /* ==================== STATUS ==================== */
         .status-banner {
-            background: rgba(4, 8, 16, 0.85);
-            border: 1.5px solid var(--gold);
-            border-radius: 10px;
-            padding: 6px 16px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--gold-light);
-            text-align: center;
-            margin: 4px auto;
-            max-width: 95%;
-            width: fit-content;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.6);
-            transition: all 0.3s;
+            background: rgba(4, 8, 16, 0.85); border: 1.5px solid var(--gold);
+            border-radius: 10px; padding: 6px 16px; font-size: 0.85rem; font-weight: 700;
+            color: var(--gold-light); text-align: center; margin: 4px auto;
+            max-width: 95%; width: fit-content;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.6); transition: all 0.3s;
         }
         .status-banner.win { background: rgba(0,60,30,0.85); color: #4ade80; border-color: #22c55e; }
         .status-banner.loss { background: rgba(60,0,0,0.85); color: #f87171; border-color: #ef4444; }
 
-        /* ==================== FOOTER ==================== */
         .game-footer {
-            flex-shrink: 0;
-            display: flex; flex-direction: column; gap: 6px;
+            flex-shrink: 0; display: flex; flex-direction: column; gap: 6px;
             background: rgba(4, 8, 16, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--gold);
-            border-radius: var(--radius);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--gold); border-radius: var(--radius);
             padding: 6px 8px;
             box-shadow: 0 10px 24px rgba(0,0,0,0.7), inset 0 0 20px rgba(30, 55, 104, 0.3);
         }
         .action-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
         .game-button {
             background: linear-gradient(135deg, #0d1930, #040810);
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            color: var(--gold-light);
-            font-weight: 700;
-            padding: 7px 12px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-            flex: 1 1 auto;
-            min-width: 55px;
-            text-align: center;
+            border: 2px solid var(--gold); border-radius: 8px;
+            color: var(--gold-light); font-weight: 700;
+            padding: 7px 12px; font-size: 0.7rem; cursor: pointer;
+            transition: var(--transition); white-space: nowrap;
+            flex: 1 1 auto; min-width: 55px; text-align: center;
             box-shadow: 0 3px 8px rgba(0,0,0,0.5);
         }
         .game-button:hover:not(:disabled) {
             background: linear-gradient(135deg, #c59b27, #8b6914);
-            color: #fff;
-            box-shadow: 0 6px 16px rgba(197, 155, 39, 0.5);
+            color: #fff; box-shadow: 0 6px 16px rgba(197, 155, 39, 0.5);
             transform: translateY(-2px);
         }
         .game-button:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(0.7); }
         .game-button.primary { background: linear-gradient(135deg, #c59b27, #a17c1a); color: #1f2937; font-weight: 800; }
         .secondary-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px; }
         .btn-small {
-            background: rgba(30, 55, 104, 0.35);
-            border: 1px solid var(--gold);
-            border-radius: 6px;
-            color: var(--gold-light);
-            padding: 4px 10px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            cursor: pointer;
+            background: rgba(30, 55, 104, 0.35); border: 1px solid var(--gold);
+            border-radius: 6px; color: var(--gold-light); padding: 4px 10px;
+            font-size: 0.6rem; font-weight: 600; cursor: pointer;
             transition: var(--transition);
         }
         .btn-small:hover { background: rgba(197,155,39,0.2); }
         .btn-small:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(0.7); }
         .manual-bet-input {
-            background: rgba(4, 8, 16, 0.6);
-            border: 1px solid var(--gold);
-            border-radius: 6px;
-            color: #fff;
-            padding: 4px 8px;
-            font-size: 0.65rem;
-            width: 85px;
-            text-align: center;
+            background: rgba(4, 8, 16, 0.6); border: 1px solid var(--gold);
+            border-radius: 6px; color: #fff; padding: 4px 8px;
+            font-size: 0.65rem; width: 85px; text-align: center;
         }
         .suggestion-box { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; margin-top: 2px; }
 
-        /* ==================== RESPONSIVE ==================== */
         @media (max-height: 700px) {
             .game-table { padding: 4px 3px; }
             .cards-row { gap: 3px; }
             .card { width: 48px; height: 72px; }
             .game-button { padding: 5px 8px; font-size: 0.6rem; }
-            .game-wrapper { padding-top: 36px; }
         }
         @media (max-width: 380px) {
             .game-header { padding: 4px 6px; }
@@ -415,10 +258,6 @@
 </head>
 <body>
 
-    <!-- ==================== نوار دیباگ ==================== -->
-    <div id="debugBar" class="loading">⏳ در حال بررسی فایل کارت‌ها...</div>
-
-    <!-- ==================== BACKGROUND ==================== -->
     <div class="bg-container">
         <div class="wave wave-1"></div>
         <div class="wave wave-2"></div>
@@ -426,7 +265,6 @@
     </div>
 
     <div class="game-wrapper">
-        <!-- ==================== HEADER ==================== -->
         <header class="game-header">
             <div class="game-title">♠️ ROYAL BLACKJACK</div>
             <div class="account-row">
@@ -441,7 +279,6 @@
             </div>
         </header>
 
-        <!-- ==================== TABLE ==================== -->
         <main class="game-table">
             <div class="dealer-area">
                 <div class="dealer-header">
@@ -461,7 +298,6 @@
             </div>
         </main>
 
-        <!-- ==================== FOOTER ==================== -->
         <footer class="game-footer">
             <div class="action-row">
                 <button id="btnDeal" onclick="startRound()" class="game-button primary">توزیع کارت</button>
@@ -474,7 +310,7 @@
 
             <div class="secondary-row">
                 <button id="btnInsurance" onclick="playerInsurance(true)" disabled class="btn-small">بیمه</button>
-                <button id="btnNoInsurance" onclick="playerInsurance(false)" disabled class="btn-small">بدون بیمه</button>
+                <button id="btnNoInsurance" onclick="playerInsurance(false)" disabled="gameState" class="btn-small">بدون بیمه</button>
                 <button id="btnClearBet" onclick="clearBet()" class="btn-small">پاک کردن</button>
                 <input type="number" id="manualBetInput" placeholder="مبلغ دلخواه" class="manual-bet-input" min="0" step="any">
                 <button onclick="addManualBet()" class="btn-small" id="btnManualBet">افزودن</button>
@@ -490,108 +326,9 @@
         </footer>
     </div>
 
-    <!-- ==================== فایل کارت‌ها (اختیاری) ==================== -->
-    <script src="cards_base64.js" onerror="window.__cardFileMissing=true;"></script>
+    <script src="cards_base64.js"></script>
 
-    <!-- ==================== منطق بازی ==================== -->
     <script>
-    // ==================== دیباگ ====================
-    (function initDebug() {
-        const bar = document.getElementById('debugBar');
-        const log = (html, cls) => {
-            bar.className = cls;
-            bar.innerHTML = html;
-            console.log('[DEBUG]', bar.innerText);
-        };
-
-        // ۱. آیا فایل لود شده؟
-        if (window.__cardFileMissing) {
-            log(
-                '❌ فایل <b>cards_base64.js</b> پیدا نشد!<br>' +
-                '• مطمئن شوید فایل در همان پوشه index.html قرار دارد<br>' +
-                '• اسم فایل دقیقاً <b>cards_base64.js</b> باشد (حروف کوچک)<br>' +
-                '• فایل را روی GitHub آپلود کرده باشید',
-                'err'
-            );
-            return;
-        }
-
-        // ۲. آیا cardSrcs تعریف شده؟
-        if (typeof cardSrcs === 'undefined') {
-            log(
-                '❌ فایل cards_base64.js لود شد، اما متغیر <b>cardSrcs</b> تعریف نشده!<br>' +
-                '• فایل باید با <b>const cardSrcs = {...}</b> شروع شود<br>' +
-                '• محتوای فایل فعلی خالی یا ناقص است',
-                'err'
-            );
-            return;
-        }
-
-        // ۳. تعداد کلیدها
-        const keys = Object.keys(cardSrcs);
-        if (keys.length === 0) {
-            log('❌ متغیر cardSrcs تعریف شده اما خالی است!', 'err');
-            return;
-        }
-
-        // ۴. بررسی نمونه کلید hearts_A
-        const sampleKeys = keys.slice(0, 6).join(' | ');
-        const testKeys = ['hearts_A', 'spades_A', 'diamonds_A', 'clubs_A'];
-        const foundTest = testKeys.filter(k => cardSrcs[k]);
-        const backKey = ['back', 'BACK', 'Back', 'back_card'].find(k => cardSrcs[k]);
-
-        let status = 'ok';
-        let msg = '';
-
-        if (foundTest.length === 0) {
-            status = 'warn';
-            msg =
-                '⚠️ کلیدهای <b>hearts_A / spades_A / diamonds_A / clubs_A</b> پیدا نشدند!<br>' +
-                '• تعداد کلیدها: ' + keys.length + '<br>' +
-                '• نمونه کلیدهای موجود: <b>' + sampleKeys + '</b><br>' +
-                '• ساختار کلیدها با کد بازی متفاوت است. نمونه‌های بالا را برای من بفرستید.';
-        } else if (foundTest.length < 4) {
-            status = 'warn';
-            msg =
-                '⚠️ فقط برخی از کلیدهای اصلی پیدا شدند: <b>' + foundTest.join(', ') + '</b><br>' +
-                '• تعداد کلیدها: ' + keys.length + '<br>' +
-                '• نمونه: ' + sampleKeys;
-        } else {
-            // ۵. تست لود تصویر
-            const testImg = new Image();
-            testImg.onload = function() {
-                log(
-                    '✅ <b>همه چیز درست است!</b><br>' +
-                    '• تعداد کلیدها: ' + keys.length + '<br>' +
-                    '• کلیدها: hearts_A ✓ spades_A ✓ diamonds_A ✓ clubs_A ✓<br>' +
-                    '• پشت کارت: ' + (backKey ? '<b>' + backKey + '</b> ✓' : '❌ پیدا نشد') + '<br>' +
-                    '• طول Base64 hearts_A: ' + cardSrcs['hearts_A'].length + ' کاراکتر<br>' +
-                    '• تست تصویر: <b>موفق ✓</b>',
-                    'ok'
-                );
-            };
-            testImg.onerror = function() {
-                log(
-                    '⚠️ کلیدها درست هستند اما <b>Base64 تصویر نامعتبر</b> است!<br>' +
-                    '• طول hearts_A: ' + cardSrcs['hearts_A'].length + ' کاراکتر<br>' +
-                    '• احتمالاً Base64 ناقص کپی شده یا فرمت اشتباه است<br>' +
-                    '• باید با <b>data:image/png;base64,</b> یا <b>data:image/jpeg;base64,</b> شروع شود',
-                    'warn'
-                );
-            };
-            testImg.src = cardSrcs['hearts_A'];
-            log(
-                '⏳ در حال تست Base64...<br>' +
-                '• تعداد کلیدها: ' + keys.length + '<br>' +
-                '• نمونه: ' + sampleKeys,
-                'loading'
-            );
-            return;
-        }
-
-        log(msg, status);
-    })();
-
     // ==================== STATE ====================
     let bankroll = 1000;
     let currentBet = 0;
@@ -615,7 +352,6 @@
     const BLACKJACK = 21;
     const DEALER_STAND_THRESHOLD = 17;
 
-    // ==================== MAP & IMAGE CHECK ====================
     const suitToKey = { '♠': 'spades', '♥': 'hearts', '♦': 'diamonds', '♣': 'clubs' };
 
     function hasCardImages() {
@@ -629,7 +365,7 @@
     }
     function getCardBackImageSrc() {
         if (!hasCardImages()) return null;
-        const candidates = ['back', 'BACK', 'Back', 'back_card', 'card_back'];
+        const candidates = ['back', 'BACK', 'Back', 'back_card', 'card_back', 'cardBack', 'back_card_image'];
         for (const k of candidates) {
             if (cardSrcs[k] && typeof cardSrcs[k] === 'string' && cardSrcs[k].length > 10) {
                 return cardSrcs[k];
@@ -676,7 +412,6 @@
         return `<div class="card card-back"><div class="back-emblem"><svg viewBox="0 0 30 30">${cornerSuitPaths['♠']}</svg></div></div>`;
     }
 
-    // ==================== RENDER ====================
     function getCardHTML(card) {
         const imgSrc = getCardImageSrc(card);
         if (imgSrc) return `<div class="card card-img"><img src="${imgSrc}" alt="${card.val}${card.suit}" draggable="false"></div>`;
